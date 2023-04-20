@@ -32,6 +32,7 @@ Partial Class Form_Pattern_a_deviner
         Me.Label1 = New System.Windows.Forms.Label()
         Me.playable_label = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.error_label = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -105,7 +106,7 @@ Partial Class Form_Pattern_a_deviner
         'playable_label
         '
         Me.playable_label.AutoSize = True
-        Me.playable_label.Location = New System.Drawing.Point(545, 213)
+        Me.playable_label.Location = New System.Drawing.Point(518, 212)
         Me.playable_label.Name = "playable_label"
         Me.playable_label.Size = New System.Drawing.Size(66, 16)
         Me.playable_label.TabIndex = 2
@@ -117,15 +118,27 @@ Partial Class Form_Pattern_a_deviner
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(472, 187)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(139, 16)
+        Me.Label3.Size = New System.Drawing.Size(147, 16)
         Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Caractère jouables"
+        Me.Label3.Text = "Caractères jouables"
+        '
+        'error_label
+        '
+        Me.error_label.AutoSize = True
+        Me.error_label.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.error_label.ForeColor = System.Drawing.Color.Red
+        Me.error_label.Location = New System.Drawing.Point(84, 246)
+        Me.error_label.Name = "error_label"
+        Me.error_label.Size = New System.Drawing.Size(415, 16)
+        Me.error_label.TabIndex = 4
+        Me.error_label.Text = "un seul des caractère jouable autorisées dans chaque cas!"
         '
         'Form_Pattern_a_deviner
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(633, 271)
+        Me.Controls.Add(Me.error_label)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.playable_label)
         Me.Controls.Add(Me.Label1)
@@ -149,4 +162,5 @@ Partial Class Form_Pattern_a_deviner
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents playable_label As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents error_label As Label
 End Class
