@@ -21,7 +21,7 @@
                 If txtBox.Text <> String.Empty Then
                     hidden_code += txtBox.Text
                 Else
-                    MessageBox.Show("ajoutez votre message à chiffrer dans le cas!", "Erreur")
+                    MessageBox.Show("ajoutez votre message à cacher dans le cas!", "Erreur")
                     Exit Sub
                 End If
             End If
