@@ -125,11 +125,11 @@ Partial Class Form_Pattern_a_deviner
         'error_label
         '
         Me.error_label.AutoSize = True
-        Me.error_label.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.error_label.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.error_label.ForeColor = System.Drawing.Color.Red
-        Me.error_label.Location = New System.Drawing.Point(84, 246)
+        Me.error_label.Location = New System.Drawing.Point(113, 232)
         Me.error_label.Name = "error_label"
-        Me.error_label.Size = New System.Drawing.Size(415, 16)
+        Me.error_label.Size = New System.Drawing.Size(358, 16)
         Me.error_label.TabIndex = 4
         Me.error_label.Text = "un seul des caractère jouable autorisées dans chaque cas!"
         '
