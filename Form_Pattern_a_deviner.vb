@@ -26,7 +26,9 @@
                 End If
             End If
         Next
-        MsgBox(hidden_code)
+
+        Me.Hide()
+        Form_Game.Show()
     End Sub
 
     Public Function getMessage() As String
