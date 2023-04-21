@@ -23,12 +23,12 @@ Partial Class Form_Game
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Guess_Button = New System.Windows.Forms.Button()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.label_codeColor = New System.Windows.Forms.Label()
         Me.absent_label = New System.Windows.Forms.Label()
         Me.present_label = New System.Windows.Forms.Label()
@@ -53,41 +53,6 @@ Partial Class Form_Game
         Me.Panel1.Size = New System.Drawing.Size(513, 91)
         Me.Panel1.TabIndex = 0
         '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(3, 33)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(63, 22)
-        Me.TextBox1.TabIndex = 0
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(91, 33)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(63, 22)
-        Me.TextBox2.TabIndex = 1
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(178, 33)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(63, 22)
-        Me.TextBox3.TabIndex = 2
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Location = New System.Drawing.Point(265, 33)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(63, 22)
-        Me.TextBox4.TabIndex = 3
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Location = New System.Drawing.Point(344, 33)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(63, 22)
-        Me.TextBox5.TabIndex = 4
-        '
         'Guess_Button
         '
         Me.Guess_Button.Location = New System.Drawing.Point(426, 32)
@@ -96,6 +61,41 @@ Partial Class Form_Game
         Me.Guess_Button.TabIndex = 5
         Me.Guess_Button.Text = "Guess"
         Me.Guess_Button.UseVisualStyleBackColor = True
+        '
+        'TextBox5
+        '
+        Me.TextBox5.Location = New System.Drawing.Point(344, 33)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(63, 22)
+        Me.TextBox5.TabIndex = 4
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(265, 33)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(63, 22)
+        Me.TextBox4.TabIndex = 3
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(178, 33)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(63, 22)
+        Me.TextBox3.TabIndex = 2
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(91, 33)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(63, 22)
+        Me.TextBox2.TabIndex = 1
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(3, 33)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(63, 22)
+        Me.TextBox1.TabIndex = 0
         '
         'label_codeColor
         '
@@ -179,7 +179,7 @@ Partial Class Form_Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(590, 590)
+        Me.ClientSize = New System.Drawing.Size(590, 654)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)

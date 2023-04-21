@@ -104,6 +104,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form_Game.resx">
+      <DependentUpon>Form_Game.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Pattern_a_deviner.resx">
       <DependentUpon>Form_Pattern_a_deviner.vb</DependentUpon>
     </EmbeddedResource>
