@@ -11,3 +11,4 @@ F:\BUT1\Semestre 2\Periode D\IHM\SAE\Master-Mind---VB.NET\bin\Debug\Master-Mind-
 F:\BUT1\Semestre 2\Periode D\IHM\SAE\Master-Mind---VB.NET\obj\Debug\Master-Mind---VB.NET.exe
 F:\BUT1\Semestre 2\Periode D\IHM\SAE\Master-Mind---VB.NET\obj\Debug\Master-Mind---VB.NET.xml
 F:\BUT1\Semestre 2\Periode D\IHM\SAE\Master-Mind---VB.NET\obj\Debug\Master-Mind---VB.NET.pdb
+F:\BUT1\Semestre 2\Periode D\IHM\SAE\Master-Mind---VB.NET\obj\Debug\Master_Mind___VB.NET.Form_Game.resources
