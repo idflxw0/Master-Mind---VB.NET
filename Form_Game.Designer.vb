@@ -23,7 +23,7 @@ Partial Class Form_Game
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.guess_panel = New System.Windows.Forms.Panel()
         Me.Guess_Button = New System.Windows.Forms.Button()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
@@ -120,22 +120,22 @@ Partial Class Form_Game
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.timer_label = New System.Windows.Forms.Label()
         Me.label_error_input = New System.Windows.Forms.Label()
-        Me.Panel1.SuspendLayout()
+        Me.guess_panel.SuspendLayout()
         Me.panel_essais.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Panel1
+        'guess_panel
         '
-        Me.Panel1.Controls.Add(Me.Guess_Button)
-        Me.Panel1.Controls.Add(Me.TextBox5)
-        Me.Panel1.Controls.Add(Me.TextBox4)
-        Me.Panel1.Controls.Add(Me.TextBox3)
-        Me.Panel1.Controls.Add(Me.TextBox2)
-        Me.Panel1.Controls.Add(Me.TextBox1)
-        Me.Panel1.Location = New System.Drawing.Point(28, 63)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(513, 91)
-        Me.Panel1.TabIndex = 0
+        Me.guess_panel.Controls.Add(Me.Guess_Button)
+        Me.guess_panel.Controls.Add(Me.TextBox5)
+        Me.guess_panel.Controls.Add(Me.TextBox4)
+        Me.guess_panel.Controls.Add(Me.TextBox3)
+        Me.guess_panel.Controls.Add(Me.TextBox2)
+        Me.guess_panel.Controls.Add(Me.TextBox1)
+        Me.guess_panel.Location = New System.Drawing.Point(28, 63)
+        Me.guess_panel.Name = "guess_panel"
+        Me.guess_panel.Size = New System.Drawing.Size(513, 91)
+        Me.guess_panel.TabIndex = 0
         '
         'Guess_Button
         '
@@ -1089,11 +1089,11 @@ Partial Class Form_Game
         Me.Controls.Add(Me.present_label)
         Me.Controls.Add(Me.absent_label)
         Me.Controls.Add(Me.label_codeColor)
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.guess_panel)
         Me.Name = "Form_Game"
         Me.Text = "Form_Game"
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.guess_panel.ResumeLayout(False)
+        Me.guess_panel.PerformLayout()
         Me.panel_essais.ResumeLayout(False)
         Me.panel_essais.PerformLayout()
         Me.ResumeLayout(False)
@@ -1101,7 +1101,7 @@ Partial Class Form_Game
 
     End Sub
 
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents guess_panel As Panel
     Friend WithEvents Guess_Button As Button
     Friend WithEvents TextBox5 As TextBox
     Friend WithEvents TextBox4 As TextBox

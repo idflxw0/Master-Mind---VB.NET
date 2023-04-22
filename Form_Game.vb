@@ -2,6 +2,9 @@
     Private chances As Integer = 15
     Private hidden_code As String = Form_Pattern_a_deviner.getMessage()
     Private seconds, minutes As Integer
+    Private Authorized_Characters As String = "#$£%@"
+    Private letter_found As Integer = 0
+    Private Const must_find As Integer = 5
 
     Private Sub Form_Game_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Il vous reste " & chances & " coup(s)..."
@@ -24,13 +27,50 @@
     End Function
 
     Private Sub Guess_Button_Click(sender As Object, e As EventArgs) Handles Guess_Button.Click
+        For Each guess_box As Control In guess_panel.Controls
+            If TypeOf guess_box Is TextBox Then
+                perfectyPlaced(guess_box)
+                If letter_found = must_find Then
+                    Timer1.Stop()
+                    label_found.Visible = True
+                End If
 
+            End If
+        Next
     End Sub
+
+    Private Function perfectyPlaced(guessBox As Control)
+        For i As Integer = 0 To guess_panel.Controls.Count - 1
+            If guessBox.Text = hidden_code(i) Then
+                Me.letter_found += 1
+                guessBox.BackColor = Color.Green
+                Exit For
+            ElseIf abesentLetter(guessBox) Then
+                guessBox.BackColor = Color.Red
+                Exit For
+            End If
+        Next
+        Return Nothing
+    End Function
+
+    Private Function abesentLetter(guessBox As Control)
+        For i As Integer = 0 To guess_panel.Controls.Count - 1
+            If hidden_code.Contains(guessBox.Text) = False Then
+                Return True
+            End If
+        Next
+        Return False
+    End Function
+
+    Private Function presentButNotPerfectlyPlaced(guessBox As Control)
+
+    End Function
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         timer(sender, e)
-        checkmate(minutes, seconds)
+        checkmate()
     End Sub
+
     Private Function timer(sender As Object, e As EventArgs)
         timer_label.Text = Format(minutes, "00:") & Format(seconds, "00")
         seconds += 1
@@ -41,10 +81,22 @@
         Return Nothing
     End Function
 
-    Private Function checkmate(min As Integer, sec As Integer)
-        If min = 1 AndAlso sec = 31 Then
-            Timer1.Stop()
-            MsgBox("vous avez perdu")
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged, TextBox2.TextChanged, TextBox3.TextChanged, TextBox4.TextChanged, TextBox5.TextChanged
+        If Authorized_Characters.Contains(sender.Text) Then
+            label_error_input.Visible = False
+            Exit Sub
+        ElseIf sender.Text.length() > 1 Then
+            sender.text = ""
+            label_error_input.Visible = True
         End If
+
+    End Sub
+
+    Private Function checkmate()
+        If Me.minutes = 1 AndAlso Me.seconds = 30 Then
+            Timer1.Stop()
+        End If
+
+        Return Nothing
     End Function
 End Class

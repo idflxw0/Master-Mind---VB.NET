@@ -1,6 +1,6 @@
 ﻿Public Class Form_Pattern_a_deviner
     Private Authorized_Characters As String = "#$£%@"
-    Private hidden_code As String
+    Private hidden_code As String = ""
     Private Sub Form_Pattern_a_deviner_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         error_label.Visible = False
     End Sub
