@@ -27,7 +27,6 @@
         Return Nothing
     End Function
 
-
     Private Function letterPlaced(guessBox As Control)
         For i As Integer = 0 To guess_panel.Controls.Count - 1
             If perfectlyPlaced(guessBox) Then
