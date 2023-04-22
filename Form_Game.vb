@@ -26,6 +26,13 @@
         End If
         Return Nothing
     End Function
+    Private Function checkmate()
+        If Me.minutes = 1 AndAlso Me.seconds = 30 Then
+            Timer1.Stop()
+        End If
+
+        Return Nothing
+    End Function
 
     Private Function letterPlaced(guessBox As Control)
         For i As Integer = 0 To guess_panel.Controls.Count - 1
@@ -133,11 +140,5 @@
 
     End Sub
 
-    Private Function checkmate()
-        If Me.minutes = 1 AndAlso Me.seconds = 30 Then
-            Timer1.Stop()
-        End If
 
-        Return Nothing
-    End Function
 End Class
