@@ -27,22 +27,25 @@
     End Function
 
     Private Sub Guess_Button_Click(sender As Object, e As EventArgs) Handles Guess_Button.Click
+
         For Each guess_box As Control In guess_panel.Controls
             If TypeOf guess_box Is TextBox Then
-                perfectyPlaced(guess_box)
+                letterPlaced(guess_box)
                 If letter_found = must_find Then
                     Timer1.Stop()
                     label_found.Visible = True
                 End If
-
             End If
         Next
+        If letter_found <> must_find Then
+            chances -= 1
+            Me.Text = "Il vous reste " & chances & " coup(s)..."
+        End If
     End Sub
 
-    Private Function perfectyPlaced(guessBox As Control)
+    Private Function letterPlaced(guessBox As Control)
         For i As Integer = 0 To guess_panel.Controls.Count - 1
-            If guessBox.Text = hidden_code(i) Then
-                Me.letter_found += 1
+            If perfectlyPlaced(guessBox) Then
                 guessBox.BackColor = Color.Green
                 Exit For
             ElseIf abesentLetter(guessBox) Then
@@ -53,7 +56,21 @@
                 Exit For
             End If
         Next
+        ' greenColors(guessBox)
         Return Nothing
+    End Function
+
+    Private Function perfectlyPlaced(guessBox As Control)
+        For i As Integer = 0 To guess_panel.Controls.Count - 1
+            If abesentLetter(guessBox) = False AndAlso presentButNotPerfectlyPlaced(guessBox) = False Then
+                If guessBox.Text = hidden_code(i) Then
+                    Return True
+                    Exit For
+                End If
+            End If
+
+        Next
+        Return False
     End Function
 
     Private Function abesentLetter(guessBox As Control)
@@ -78,7 +95,13 @@
             End If
         Next
         Return Nothing
+    End Function
 
+    Private Function greenColors(guessBox As Control)
+        If guessBox.BackColor = Color.Green Then
+            Return True
+        End If
+        Return False
     End Function
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
