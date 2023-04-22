@@ -5,7 +5,7 @@
     Private Authorized_Characters As String = "#$£%@"
     Private letter_found As Integer = 0
     Private Const must_find As Integer = 5
-    'test pour eric
+
     Private Function hideAll()
         For Each hidLabel As Control In panel_essais.Controls
             If TypeOf hidLabel Is Label Then
