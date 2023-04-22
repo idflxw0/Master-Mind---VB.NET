@@ -47,6 +47,7 @@
         For i As Integer = 0 To guess_panel.Controls.Count - 1
             If perfectlyPlaced(guessBox) Then
                 guessBox.BackColor = Color.Green
+                greenColors(guessBox)
                 Exit For
             ElseIf abesentLetter(guessBox) Then
                 guessBox.BackColor = Color.Red
@@ -56,7 +57,6 @@
                 Exit For
             End If
         Next
-        ' greenColors(guessBox)
         Return Nothing
     End Function
 
@@ -99,9 +99,9 @@
 
     Private Function greenColors(guessBox As Control)
         If guessBox.BackColor = Color.Green Then
-            Return True
+            letter_found += 1
         End If
-        Return False
+        Return Nothing
     End Function
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
