@@ -48,6 +48,9 @@
             ElseIf abesentLetter(guessBox) Then
                 guessBox.BackColor = Color.Red
                 Exit For
+            ElseIf presentButNotPerfectlyPlaced(guessBox) Then
+                guessBox.BackColor = Color.Blue
+                Exit For
             End If
         Next
         Return Nothing
@@ -63,6 +66,18 @@
     End Function
 
     Private Function presentButNotPerfectlyPlaced(guessBox As Control)
+        For i As Integer = 0 To hidden_code.Length - 1
+            If abesentLetter(guessBox) = False Then
+                If hidden_code.Contains(guessBox.Text) Then
+                    If guessBox.Text <> hidden_code(i) Then
+                        Return True
+                        Exit For
+                    Else Return False
+                    End If
+                End If
+            End If
+        Next
+        Return Nothing
 
     End Function
 
