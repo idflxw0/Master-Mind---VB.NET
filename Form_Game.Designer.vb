@@ -148,35 +148,35 @@ Partial Class Form_Game
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(344, 33)
+        Me.TextBox5.Location = New System.Drawing.Point(338, 32)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(63, 22)
         Me.TextBox5.TabIndex = 4
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(265, 33)
+        Me.TextBox4.Location = New System.Drawing.Point(259, 32)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(63, 22)
         Me.TextBox4.TabIndex = 3
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(178, 33)
+        Me.TextBox3.Location = New System.Drawing.Point(187, 33)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(63, 22)
         Me.TextBox3.TabIndex = 2
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(91, 33)
+        Me.TextBox2.Location = New System.Drawing.Point(107, 33)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(63, 22)
         Me.TextBox2.TabIndex = 1
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(3, 33)
+        Me.TextBox1.Location = New System.Drawing.Point(32, 32)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(63, 22)
         Me.TextBox1.TabIndex = 0

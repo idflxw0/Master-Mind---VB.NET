@@ -1,10 +1,12 @@
 ﻿Public Class Form_Game
+
     Private chances As Integer = 15
     Private hidden_code As String = Form_Pattern_a_deviner.getMessage()
     Private seconds, minutes As Integer
     Private Authorized_Characters As String = "#$£%@"
     Private letter_found As Integer = 0
     Private Const must_find As Integer = 5
+
 
     Private Function hideAll()
         For Each hidLabel As Control In panel_essais.Controls
@@ -17,6 +19,7 @@
         label_lost.Visible = False
         Return Nothing
     End Function
+
     Private Function timer(sender As Object, e As EventArgs)
         timer_label.Text = Format(minutes, "00:") & Format(seconds, "00")
         seconds += 1
@@ -26,80 +29,74 @@
         End If
         Return Nothing
     End Function
+
     Private Function checkmate()
         If Me.minutes = 1 AndAlso Me.seconds = 30 Then
             Timer1.Stop()
         End If
-
         Return Nothing
     End Function
 
-    Private Function letterPlaced(guessBox As Control)
-        For i As Integer = 0 To guess_panel.Controls.Count - 1
-            If perfectlyPlaced(guessBox) Then
-                guessBox.BackColor = Color.Green
-                greenColors(guessBox)
-                Exit For
-            ElseIf abesentLetter(guessBox) Then
-                guessBox.BackColor = Color.Red
-                Exit For
-            ElseIf presentButNotPerfectlyPlaced(guessBox) Then
-                guessBox.BackColor = Color.Blue
-                Exit For
-            End If
-        Next
-        Return Nothing
-    End Function
-
-    Private Function perfectlyPlaced(guessBox As Control)
-        For i As Integer = 0 To guess_panel.Controls.Count - 1
-            If abesentLetter(guessBox) = False AndAlso presentButNotPerfectlyPlaced(guessBox) = False Then
-                If guessBox.Text = hidden_code(i) Then
-                    Return True
-                    Exit For
-                End If
-            End If
-
-        Next
-        Return False
-    End Function
-
-    Private Function abesentLetter(guessBox As Control)
-        For i As Integer = 0 To guess_panel.Controls.Count - 1
-            If hidden_code.Contains(guessBox.Text) = False Then
+    Private index As Integer = 0
+    Private Function perfectlyPlaced(guessBox As Control) As Boolean
+        If abesentLetter(guessBox) = False Then
+            If hidden_code(index) = guessBox.Text Then
+                index += 1
                 Return True
             End If
-        Next
-        Return False
-    End Function
-
-    Private Function presentButNotPerfectlyPlaced(guessBox As Control)
-        For i As Integer = 0 To hidden_code.Length - 1
-            If abesentLetter(guessBox) = False Then
-                If hidden_code.Contains(guessBox.Text) Then
-                    If guessBox.Text <> hidden_code(i) Then
-                        Return True
-                        Exit For
-                    Else Return False
-                    End If
-                End If
-            End If
-        Next
-        Return Nothing
-    End Function
-
-    Private Function greenColors(guessBox As Control)
-        If guessBox.BackColor = Color.Green Then
-            letter_found += 1
+        Else
+            index += 1
+            Return False
         End If
         Return Nothing
     End Function
+
+
+    Private Function presentButNotPerfectlyPlaced(guessBox As Control) As Boolean
+        If hidden_code.Contains(guessBox.Text) Then
+            If hidden_code(index) <> guessBox.Text Then
+                index += 1
+                Return True
+            Else
+                index += 1
+                Return False
+            End If
+
+        End If
+        Return Nothing
+    End Function
+
+    Private Function abesentLetter(guessBox As Control) As Boolean
+        For i As Integer = 0 To Me.hidden_code.Length - 1
+            If guessBox.Text = Me.hidden_code(i) Then
+                Return False
+            End If
+        Next
+        Return True
+    End Function
+
+    Private Function letterPlaced(guessBox As Control)
+        If perfectlyPlaced(guessBox) Then
+            guessBox.BackColor = Color.Green
+        ElseIf presentButNotPerfectlyPlaced(guessBox) Then
+            guessBox.BackColor = Color.Blue
+        ElseIf abesentLetter(guessBox) Then
+            guessBox.BackColor = Color.Black
+            guessBox.ForeColor = Color.White
+        End If
+    End Function
+
 
 
     Private Sub Guess_Button_Click(sender As Object, e As EventArgs) Handles Guess_Button.Click
 
         For Each guess_box As Control In guess_panel.Controls
             If TypeOf guess_box Is TextBox Then
+                MsgBox("guess box in the guess button" & guess_box.Text)
+                If guess_box.Text = String.Empty Then
+                    MessageBox.Show("Veuillez remplir tous les champs!", "Erreur")
+                    Exit Sub
+                End If
                 letterPlaced(guess_box)
                 If letter_found = must_find Then
                     Timer1.Stop()
@@ -111,6 +108,7 @@
             chances -= 1
             Me.Text = "Il vous reste " & chances & " coup(s)..."
         End If
+        index = 0
     End Sub
 
     Private Sub Form_Game_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -119,7 +117,6 @@
         Me.Timer1.Start()
         Me.Timer1.Interval = 1000
         Me.Timer1_Tick(sender, e)
-
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -127,17 +124,14 @@
         checkmate()
     End Sub
 
-
-
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged, TextBox2.TextChanged, TextBox3.TextChanged, TextBox4.TextChanged, TextBox5.TextChanged
         If Authorized_Characters.Contains(sender.Text) Then
             label_error_input.Visible = False
             Exit Sub
-        ElseIf sender.Text.length() > 1 Then
+        Else
             sender.text = ""
             label_error_input.Visible = True
         End If
-
     End Sub
 
 
