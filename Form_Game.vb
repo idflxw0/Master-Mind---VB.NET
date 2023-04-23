@@ -4,8 +4,8 @@
     Private hidden_code As String = Form_Pattern_a_deviner.getMessage()
     Private seconds, minutes As Integer
     Private Authorized_Characters As String = "#$£%@"
-    Private letter_found As Integer = 0
-    Private Const must_find As Integer = 5
+    Private added_letters As String
+    Private guesses(14, 4) As String
 
 
     Private Function hideAll()
@@ -33,6 +33,7 @@
     Private Function checkmate()
         If Me.minutes = 1 AndAlso Me.seconds = 30 Then
             Timer1.Stop()
+            MsgBox("Vous avez perdu!", MsgBoxStyle.Critical, "Le temps est écoulé !")
         End If
         Return Nothing
     End Function
@@ -61,7 +62,6 @@
                 index += 1
                 Return False
             End If
-
         End If
         Return Nothing
     End Function
@@ -75,16 +75,13 @@
         Return True
     End Function
 
-    Private Function letterPlaced(guessBox As Control)
+    Private Sub letterPlaced(guessBox As Control)
         If perfectlyPlaced(guessBox) Then
             guessBox.BackColor = Color.Green
         ElseIf presentButNotPerfectlyPlaced(guessBox) Then
             guessBox.BackColor = Color.Blue
-        ElseIf abesentLetter(guessBox) Then
-            guessBox.BackColor = Color.Black
-            guessBox.ForeColor = Color.White
         End If
-    End Function
+    End Sub
 
 
 
@@ -92,20 +89,27 @@
 
         For Each guess_box As Control In guess_panel.Controls
             If TypeOf guess_box Is TextBox Then
-                MsgBox("guess box in the guess button" & guess_box.Text)
                 If guess_box.Text = String.Empty Then
                     MessageBox.Show("Veuillez remplir tous les champs!", "Erreur")
                     Exit Sub
                 End If
                 letterPlaced(guess_box)
-                If letter_found = must_find Then
+                added_letters += guess_box.Text
+                If added_letters = hidden_code Then
                     Timer1.Stop()
                     label_found.Visible = True
                 End If
             End If
         Next
-        If letter_found <> must_find Then
-            chances -= 1
+        If added_letters <> hidden_code Then
+            If chances > 0 Then
+                chances -= 1
+                added_letters = ""
+            Else
+                label_found.Visible = True
+                MsgBox("vous avez épuisé vos chances !", MsgBoxStyle.Critical, "Vous avez perdu!")
+            End If
+
             Me.Text = "Il vous reste " & chances & " coup(s)..."
         End If
         index = 0
