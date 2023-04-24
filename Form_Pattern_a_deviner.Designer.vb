@@ -61,6 +61,7 @@ Partial Class Form_Pattern_a_deviner
         'TextBox5
         '
         Me.TextBox5.Location = New System.Drawing.Point(406, 36)
+        Me.TextBox5.MaxLength = 1
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(81, 22)
         Me.TextBox5.TabIndex = 4
@@ -68,6 +69,7 @@ Partial Class Form_Pattern_a_deviner
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(307, 36)
+        Me.TextBox4.MaxLength = 1
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(81, 22)
         Me.TextBox4.TabIndex = 3
@@ -75,6 +77,7 @@ Partial Class Form_Pattern_a_deviner
         'TextBox3
         '
         Me.TextBox3.Location = New System.Drawing.Point(204, 36)
+        Me.TextBox3.MaxLength = 1
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(81, 22)
         Me.TextBox3.TabIndex = 2
@@ -82,6 +85,7 @@ Partial Class Form_Pattern_a_deviner
         'TextBox2
         '
         Me.TextBox2.Location = New System.Drawing.Point(104, 36)
+        Me.TextBox2.MaxLength = 1
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(81, 22)
         Me.TextBox2.TabIndex = 1
@@ -89,6 +93,7 @@ Partial Class Form_Pattern_a_deviner
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(3, 37)
+        Me.TextBox1.MaxLength = 1
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(81, 22)
         Me.TextBox1.TabIndex = 0

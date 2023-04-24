@@ -3,6 +3,7 @@
     Private hidden_code As String = ""
     Private Sub Form_Pattern_a_deviner_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         error_label.Visible = False
+        playable_label.Text = Authorized_Characters
     End Sub
 
     Private Sub TextBoxs_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged, TextBox2.TextChanged, TextBox3.TextChanged, TextBox4.TextChanged, TextBox5.TextChanged
@@ -31,7 +32,11 @@
         Form_Game.Show()
     End Sub
 
+    Public Sub setUsableChar(text As String)
+        Authorized_Characters = text
+    End Sub
+
     Public Function getMessage() As String
         Return hidden_code
-    End Function
+    End Function 
 End Class

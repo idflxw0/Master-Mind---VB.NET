@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Master_Mind___VB.NET.Form_Pattern_a_deviner
+            Me.MainForm = Global.Master_Mind___VB.NET.FormAccueil
         End Sub
     End Class
 End Namespace

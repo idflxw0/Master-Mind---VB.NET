@@ -73,6 +73,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAccueil.Designer.vb">
+      <DependentUpon>FormAccueil.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccueil.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_Game.Designer.vb">
       <DependentUpon>Form_Game.vb</DependentUpon>
     </Compile>
@@ -84,6 +90,18 @@
     </Compile>
     <Compile Include="Form_Pattern_a_deviner.Designer.vb">
       <DependentUpon>Form_Pattern_a_deviner.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStats.Designer.vb">
+      <DependentUpon>FormStats.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStats.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSettings.Designer.vb">
+      <DependentUpon>FormSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSettings.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -105,11 +123,20 @@
     <Compile Include="players.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormAccueil.resx">
+      <DependentUpon>FormAccueil.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Game.resx">
       <DependentUpon>Form_Game.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Pattern_a_deviner.resx">
       <DependentUpon>Form_Pattern_a_deviner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStats.resx">
+      <DependentUpon>FormStats.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
