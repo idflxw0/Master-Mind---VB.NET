@@ -35,6 +35,7 @@ Partial Class FormStats
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.button_time = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox_Name
@@ -84,7 +85,7 @@ Partial Class FormStats
         '
         'Sort_alpha
         '
-        Me.Sort_alpha.Location = New System.Drawing.Point(70, 469)
+        Me.Sort_alpha.Location = New System.Drawing.Point(29, 480)
         Me.Sort_alpha.Name = "Sort_alpha"
         Me.Sort_alpha.Size = New System.Drawing.Size(222, 40)
         Me.Sort_alpha.TabIndex = 5
@@ -93,7 +94,7 @@ Partial Class FormStats
         '
         'button_return
         '
-        Me.button_return.Location = New System.Drawing.Point(385, 469)
+        Me.button_return.Location = New System.Drawing.Point(788, 480)
         Me.button_return.Name = "button_return"
         Me.button_return.Size = New System.Drawing.Size(222, 40)
         Me.button_return.TabIndex = 6
@@ -102,7 +103,7 @@ Partial Class FormStats
         '
         'Button_score
         '
-        Me.Button_score.Location = New System.Drawing.Point(689, 469)
+        Me.Button_score.Location = New System.Drawing.Point(285, 480)
         Me.Button_score.Name = "Button_score"
         Me.Button_score.Size = New System.Drawing.Size(222, 40)
         Me.Button_score.TabIndex = 7
@@ -154,11 +155,21 @@ Partial Class FormStats
         Me.Label5.TabIndex = 12
         Me.Label5.Text = "Le temps"
         '
+        'button_time
+        '
+        Me.button_time.Location = New System.Drawing.Point(543, 480)
+        Me.button_time.Name = "button_time"
+        Me.button_time.Size = New System.Drawing.Size(222, 40)
+        Me.button_time.TabIndex = 13
+        Me.button_time.Text = "Par temps"
+        Me.button_time.UseVisualStyleBackColor = True
+        '
         'FormStats
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1047, 532)
+        Me.Controls.Add(Me.button_time)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
@@ -192,4 +203,5 @@ Partial Class FormStats
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
+    Friend WithEvents button_time As Button
 End Class

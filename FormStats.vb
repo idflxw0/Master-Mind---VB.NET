@@ -45,6 +45,9 @@
         FormAccueil.statsjoueurs()
     End Sub
 
-
-
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button_time.Click
+        ClearAll()
+        players.sortByTime()
+        FormAccueil.statsjoueurs()
+    End Sub
 End Class

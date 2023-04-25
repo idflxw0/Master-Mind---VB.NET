@@ -66,59 +66,73 @@
         Return player(index)
     End Function
 
+
     Public Sub sortByOrderAlpha()
-        quickSortOrderAlpha(player, 0, total_player - 1)
+        Sort(player, 0, total_player - 1, "nom")
     End Sub
     Public Sub sortByScore()
-        quickSortScore(player, 0, total_player - 1)
+        Sort(player, 0, total_player - 1, "score")
     End Sub
 
-    Public Sub quickSortOrderAlpha(array() As Splayers, lowIndex As Integer, highIndex As Integer)
+    Public Sub sortByTime()
+        Sort(player, 0, total_player - 1, "time")
+    End Sub
+
+    Private Sub Sort(array() As Splayers, lowIndex As Integer, highIndex As Integer, sortProperty As String)
         If lowIndex >= highIndex Then
             Exit Sub
         End If
 
-        Dim pivotIndex As Integer = partition(array, lowIndex, highIndex)
-        quickSortOrderAlpha(array, lowIndex, pivotIndex - 1)
-        quickSortOrderAlpha(array, pivotIndex + 1, highIndex)
+        Dim pivotIndex As Integer = partition(array, lowIndex, highIndex, sortProperty)
+        Sort(array, lowIndex, pivotIndex - 1, sortProperty)
+        Sort(array, pivotIndex + 1, highIndex, sortProperty)
     End Sub
 
-    Private Function partition(array() As Splayers, lowIndex As Integer, highIndex As Integer) As Integer
-        Dim pivot As String = array(highIndex).nom
-        Dim i As Integer = lowIndex - 1
+    Private Function partition(array() As Splayers, lowIndex As Integer, highIndex As Integer, sortProperty As String) As Integer
+        Dim pivotIndex As Integer = highIndex
+        Dim pivotValue As Object = Nothing
 
-        For j As Integer = lowIndex To highIndex - 1
-            If String.Compare(array(j).nom, pivot) < 0 Then
-                i += 1
-                swap(array, i, j)
-            End If
-        Next
+        Select Case sortProperty
+            Case "nom"
+                pivotValue = array(highIndex).nom
+            Case "score"
+                pivotValue = array(highIndex).score
+            Case "time"
+                pivotValue = array(highIndex).time
+        End Select
 
-        i += 1
-        swap(array, i, highIndex)
-
-        Return i
-    End Function
-
-    Public Sub quickSortScore(array() As Splayers, lowIndex As Integer, highIndex As Integer)
-        If lowIndex < highIndex Then
-            Dim pivot As Splayers = array(highIndex)
-            Dim partitionIndex As Integer = partition(array, lowIndex, highIndex, pivot)
-            quickSortScore(array, lowIndex, partitionIndex - 1)
-            quickSortScore(array, partitionIndex + 1, highIndex)
-        End If
-    End Sub
-
-    Private Function partition(array() As Splayers, lowIndex As Integer, highIndex As Integer, pivot As Splayers) As Integer
         Dim partitionIndex As Integer = lowIndex - 1
+
         For i As Integer = lowIndex To highIndex - 1
-            If array(i).score >= pivot.score Then
-                partitionIndex += 1
-                swap(array, partitionIndex, i)
+            Dim compareValue As Object = Nothing
+
+            Select Case sortProperty
+                Case "nom"
+                    compareValue = array(i).nom
+                Case "score"
+                    compareValue = array(i).score
+                Case "time"
+                    compareValue = array(i).time
+            End Select
+
+            If sortProperty = "nom" Then
+                If compareValue <= pivotValue Then
+                    partitionIndex += 1
+                    swap(array, partitionIndex, i)
+                End If
             End If
+            If sortProperty = "score" Or sortProperty = "time" Then
+                If compareValue >= pivotValue Then
+                    partitionIndex += 1
+                    swap(array, partitionIndex, i)
+                End If
+            End If
+
         Next
-        swap(array, partitionIndex + 1, highIndex)
-        Return partitionIndex + 1
+
+        partitionIndex += 1
+        swap(array, partitionIndex, pivotIndex)
+        Return partitionIndex
     End Function
 
     Private Sub swap(array() As Splayers, index1 As Integer, index2 As Integer)
