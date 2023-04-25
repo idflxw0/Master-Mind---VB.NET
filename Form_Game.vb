@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Status
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock
 
 Public Class Form_Game
 
@@ -214,6 +215,7 @@ Public Class Form_Game
                     Timer1.Stop()
                     addPlayer(FormAccueil.ComboBox1.Text, 0, 1, 0, 0)
                     addPlayer(FormAccueil.ComboBox2.Text, 1, 0, 1, getTimeAsIntger(timer_label))
+                    players.setTheNewBestTime(FormAccueil.ComboBox2.Text, getTimeAsIntger(timer_label))
                     label_found.Visible = True
                     Guess_Button.Enabled = False
                 End If
@@ -242,6 +244,32 @@ Public Class Form_Game
         resetIndexs()
     End Sub
 
+    Public Sub setAbsentColor(Label As Label)
+        absent_label.ForeColor = Label.ForeColor
+    End Sub
+
+    Public Sub setPresentColor(Label As Label)
+        present_label.ForeColor = Label.ForeColor
+    End Sub
+
+    Public Sub setPresentAndPerfectlyPlaced(Label As Label)
+        PB_label.ForeColor = Label.ForeColor
+    End Sub
+
+    Public Sub setCharLabel(label As Label)
+        char_label.Text = label.Text
+    End Sub
+
+    Public Function getAbsentColor() As Color
+        Return absent_label.ForeColor
+    End Function
+
+    Public Function getPresentColor() As Color
+        Return present_label.ForeColor
+    End Function
+    Public Function getPBPcolor() As Color
+        Return PB_label.ForeColor
+    End Function
 
     Private Sub Form_Game_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Il vous reste " & chances & " coup(s)..."

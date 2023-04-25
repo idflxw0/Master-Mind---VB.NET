@@ -35,7 +35,7 @@ Partial Class Form_Game
         Me.present_label = New System.Windows.Forms.Label()
         Me.PB_label = New System.Windows.Forms.Label()
         Me.playable_label = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.char_label = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.panel_essais = New System.Windows.Forms.Panel()
@@ -265,14 +265,14 @@ Partial Class Form_Game
         Me.playable_label.TabIndex = 5
         Me.playable_label.Text = "Caractères jouables"
         '
-        'Label1
+        'char_label
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(362, 333)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(66, 16)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "# $ £ % @"
+        Me.char_label.AutoSize = True
+        Me.char_label.Location = New System.Drawing.Point(362, 333)
+        Me.char_label.Name = "char_label"
+        Me.char_label.Size = New System.Drawing.Size(66, 16)
+        Me.char_label.TabIndex = 6
+        Me.char_label.Text = "# $ £ % @"
         '
         'Label2
         '
@@ -1238,7 +1238,7 @@ Partial Class Form_Game
         Me.Controls.Add(Me.panel_essais)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.char_label)
         Me.Controls.Add(Me.playable_label)
         Me.Controls.Add(Me.PB_label)
         Me.Controls.Add(Me.present_label)
@@ -1297,7 +1297,7 @@ Partial Class Form_Game
     Friend WithEvents present_label As Label
     Friend WithEvents PB_label As Label
     Friend WithEvents playable_label As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents char_label As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents panel_essais As Panel
