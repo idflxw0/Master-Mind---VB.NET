@@ -62,12 +62,21 @@ Partial Class FormSettings
         Me.change_limit_no = New System.Windows.Forms.RadioButton()
         Me.change_limit_yes = New System.Windows.Forms.RadioButton()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Button_browse = New System.Windows.Forms.Button()
+        Me.FilePathTextBox = New System.Windows.Forms.TextBox()
+        Me.filePath_no = New System.Windows.Forms.RadioButton()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.filePath_yes = New System.Windows.Forms.RadioButton()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.color_panel.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.chance_panel.SuspendLayout()
+        Me.Panel5.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -268,7 +277,7 @@ Partial Class FormSettings
         '
         'button_save
         '
-        Me.button_save.Location = New System.Drawing.Point(242, 569)
+        Me.button_save.Location = New System.Drawing.Point(242, 639)
         Me.button_save.Name = "button_save"
         Me.button_save.Size = New System.Drawing.Size(92, 33)
         Me.button_save.TabIndex = 2
@@ -277,7 +286,7 @@ Partial Class FormSettings
         '
         'button_return
         '
-        Me.button_return.Location = New System.Drawing.Point(431, 569)
+        Me.button_return.Location = New System.Drawing.Point(483, 639)
         Me.button_return.Name = "button_return"
         Me.button_return.Size = New System.Drawing.Size(92, 33)
         Me.button_return.TabIndex = 3
@@ -470,11 +479,86 @@ Partial Class FormSettings
         Me.Label9.Text = "Voulez-vous changer la limte " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "de proposition pour le second joueur ?"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'Panel5
+        '
+        Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel5.Controls.Add(Me.Label11)
+        Me.Panel5.Controls.Add(Me.Button_browse)
+        Me.Panel5.Controls.Add(Me.FilePathTextBox)
+        Me.Panel5.Controls.Add(Me.filePath_no)
+        Me.Panel5.Controls.Add(Me.Label10)
+        Me.Panel5.Controls.Add(Me.filePath_yes)
+        Me.Panel5.Location = New System.Drawing.Point(219, 501)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(442, 122)
+        Me.Panel5.TabIndex = 6
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(3, 83)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(65, 16)
+        Me.Label11.TabIndex = 23
+        Me.Label11.Text = "FilePath : "
+        '
+        'Button_browse
+        '
+        Me.Button_browse.Location = New System.Drawing.Point(263, 79)
+        Me.Button_browse.Name = "Button_browse"
+        Me.Button_browse.Size = New System.Drawing.Size(75, 23)
+        Me.Button_browse.TabIndex = 22
+        Me.Button_browse.Text = "Browse"
+        Me.Button_browse.UseVisualStyleBackColor = True
+        '
+        'FilePathTextBox
+        '
+        Me.FilePathTextBox.Location = New System.Drawing.Point(71, 80)
+        Me.FilePathTextBox.Name = "FilePathTextBox"
+        Me.FilePathTextBox.Size = New System.Drawing.Size(173, 22)
+        Me.FilePathTextBox.TabIndex = 21
+        '
+        'filePath_no
+        '
+        Me.filePath_no.AutoSize = True
+        Me.filePath_no.Location = New System.Drawing.Point(241, 35)
+        Me.filePath_no.Name = "filePath_no"
+        Me.filePath_no.Size = New System.Drawing.Size(53, 20)
+        Me.filePath_no.TabIndex = 20
+        Me.filePath_no.TabStop = True
+        Me.filePath_no.Text = "Non"
+        Me.filePath_no.UseVisualStyleBackColor = True
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(114, 0)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(211, 32)
+        Me.Label10.TabIndex = 11
+        Me.Label10.Text = "voulez-vous changer le " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "chemin du fichier de sauvegarde ?"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'filePath_yes
+        '
+        Me.filePath_yes.AutoSize = True
+        Me.filePath_yes.Location = New System.Drawing.Point(147, 35)
+        Me.filePath_yes.Name = "filePath_yes"
+        Me.filePath_yes.Size = New System.Drawing.Size(48, 20)
+        Me.filePath_yes.TabIndex = 19
+        Me.filePath_yes.TabStop = True
+        Me.filePath_yes.Text = "Oui"
+        Me.filePath_yes.UseVisualStyleBackColor = True
+        '
+        'FolderBrowserDialog1
+        '
+        '
         'FormSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(846, 639)
+        Me.ClientSize = New System.Drawing.Size(854, 684)
+        Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.chance_panel)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.button_return)
@@ -495,6 +579,8 @@ Partial Class FormSettings
         Me.Panel4.PerformLayout()
         Me.chance_panel.ResumeLayout(False)
         Me.chance_panel.PerformLayout()
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel5.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -539,4 +625,12 @@ Partial Class FormSettings
     Friend WithEvents change_limit_no As RadioButton
     Friend WithEvents change_limit_yes As RadioButton
     Friend WithEvents Label9 As Label
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Button_browse As Button
+    Friend WithEvents FilePathTextBox As TextBox
+    Friend WithEvents filePath_no As RadioButton
+    Friend WithEvents Label10 As Label
+    Friend WithEvents filePath_yes As RadioButton
+    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
 End Class

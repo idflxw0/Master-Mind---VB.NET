@@ -1,4 +1,5 @@
-﻿Imports System.Text
+﻿Imports System.IO
+Imports System.Text
 
 Public Class FormSettings
     Private Sub FromSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -14,6 +15,7 @@ Public Class FormSettings
         TimeLimit_Button_no.Checked = True
         RadioButton3.Checked = True
         change_limit_no.Checked = True
+        filePath_no.Checked = True
     End Sub
 
     Private Sub button_CheckedChanged(sender As Object, e As EventArgs) Handles button_yes.CheckedChanged, button_no.CheckedChanged
@@ -113,6 +115,20 @@ Public Class FormSettings
             Form_Game.setChances(Integer.Parse(TextBox_chance.Text))
         End If
 
+        If filePath_yes.Checked = True Then
+            If FilePathTextBox.Text = String.Empty Then
+                MsgBox("le nouveau chemin de fichier ne peut pas être vide!", MsgBoxStyle.Critical, "Erreur")
+                FilePathTextBox.Focus()
+                Exit Sub
+            End If
+
+            If FilePathTextBox.Text <> String.Empty Then
+                Dim filePath As String = FilePathTextBox.Text
+                FormAccueil.setCustomFilePath(True, filePath)
+                MsgBox(FilePathTextBox.Text)
+                MsgBox("le chemin du fichier a été modifié avec succès", MsgBoxStyle.Information)
+            End If
+        End If
         Me.Hide()
         FormAccueil.Show()
     End Sub
@@ -201,4 +217,24 @@ Public Class FormSettings
             e.Handled = True
         End If
     End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles filePath_yes.CheckedChanged, filePath_no.CheckedChanged
+        If filePath_no.Checked = True Then
+            FilePathTextBox.Enabled = False
+            Button_browse.Enabled = False
+        End If
+        If filePath_yes.Checked = True Then
+            FilePathTextBox.Enabled = True
+            Button_browse.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Button_browse_Click(sender As Object, e As EventArgs) Handles Button_browse.Click
+        If FolderBrowserDialog1.ShowDialog = DialogResult.OK Then
+            FilePathTextBox.Text = FolderBrowserDialog1.SelectedPath
+        End If
+
+    End Sub
+
+
 End Class

@@ -9,8 +9,9 @@
 
     Private player(2) As Splayers
     Private total_player As Integer = 0
-    Private hide_code As String
 
+    Private hide_code As String
+    Private previous_code As String
 
     Public Sub addTotalPlayer()
         total_player += 1
@@ -27,6 +28,13 @@
 
     Public Function getnumPlayer() As Integer
         Return total_player
+    End Function
+
+    Public Sub setPreviousCode(str As String)
+        previous_code = str
+    End Sub
+    Public Function getPreviousCode() As String
+        Return previous_code
     End Function
 
     Public Sub addPlayer(nom As String, score As Integer, partieJ1 As Integer, partieJ2 As Integer, time As Integer)

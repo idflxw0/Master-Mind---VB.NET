@@ -18,6 +18,14 @@
 
     Private Sub button_hide_Click(sender As Object, e As EventArgs) Handles button_hide.Click
         setHiddenCode(Panel1)
+        If hidden_code = players.getPreviousCode Then
+            MsgBox("Vous devez proposer une nouvelle combinaison!", MsgBoxStyle.Critical, "Erreur")
+            hidden_code = String.Empty
+            Exit Sub
+        End If
+        If hidden_code = String.Empty Then
+            setHiddenCode(Panel1)
+        End If
         Me.Hide()
         players.setHideCode(hidden_code)
         Form_Game.Show()

@@ -271,6 +271,7 @@ Public Class Form_Game
                     players.setTheNewBestTime(FormAccueil.ComboBox2.Text, getTimeAsIntger(timer_label))
                     label_found.Visible = True
                     Guess_Button.Enabled = False
+                    players.setPreviousCode(hidden_code)
                 End If
                 addColorAndLettersToLabel(guess_box)
             End If
@@ -287,6 +288,7 @@ Public Class Form_Game
                 Guess_Button.Enabled = False
                 addPlayer(FormAccueil.ComboBox1.Text, 1, 1, 0, 0)
                 addPlayer(FormAccueil.ComboBox2.Text, 0, 0, 1, getTimeAsIntger(timer_label))
+                players.setPreviousCode(hidden_code)
                 MsgBox("vous avez épuisé vos chances !", MsgBoxStyle.Critical, "Vous avez perdu!")
                 Exit Sub
             End If
@@ -302,6 +304,7 @@ Public Class Form_Game
                     Guess_Button.Enabled = False
                     addPlayer(FormAccueil.ComboBox1.Text, 1, 1, 0, 0)
                     addPlayer(FormAccueil.ComboBox2.Text, 0, 0, 1, getTimeAsIntger(timer_label))
+                    players.setPreviousCode(hidden_code)
                     MsgBox("vous avez épuisé vos chances !", MsgBoxStyle.Critical, "Vous avez perdu!")
                     Exit Sub
                 End If

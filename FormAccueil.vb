@@ -2,6 +2,9 @@
 Imports System.Text
 
 Public Class FormAccueil
+
+    Private CustomPath As Boolean = False
+    Private customFilePath As String
     Private Sub FormAccueil_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getPlayersFromFile()
         For i As Integer = 0 To players.getnumPlayer - 1
@@ -72,8 +75,15 @@ Public Class FormAccueil
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        addPlayerToFiles()
-        Me.Close()
+        Dim confirmation As DialogResult = MessageBox.Show("Voulez-Vous continuez", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If confirmation = DialogResult.No Then
+            Exit Sub
+        End If
+        If confirmation = DialogResult.Yes Then
+            addPlayerToFiles()
+            Me.Close()
+        End If
+
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles button_settings.Click
@@ -96,16 +106,58 @@ Public Class FormAccueil
             lines.Add(getPlayer(i).partieJ2)
             lines.Add(getPlayer(i).time)
         Next
-        File.WriteAllLines("F:\BUT1\Semestre 2\Periode D\IHM\SAE\$.txt", lines)
+        Dim fileName = "players.txt"
+        Dim filePath
+        If CustomPath = False Then
+            filePath = Path.Combine(Application.StartupPath, fileName)
+            If Not File.Exists(filePath) Then
+                File.Create(filePath).Dispose()
+            End If
+            File.WriteAllLines(filePath, lines)
+        End If
+
+        If CustomPath = True Then
+            filePath = Me.customFilePath
+            If Not File.Exists(filePath) Then
+                File.Create(filePath).Dispose()
+            End If
+            File.WriteAllLines(filePath, lines)
+        End If
+
     End Sub
 
     Private Sub getPlayersFromFile()
-        Dim filePath = "F:\BUT1\Semestre 2\Periode D\IHM\SAE\$.txt"
-        Dim lines = File.ReadAllLines(filePath)
-        For i As Integer = 0 To lines.Length - 1
-            players.addPlayer(lines(i), lines(i + 1), lines(i + 2), lines(i + 3), lines(i + 4))
-            i += 4
-        Next
+        Dim fileName = "players.txt"
+        Dim filePath
+        If CustomPath = False Then
+            filePath = Path.Combine(Application.StartupPath, fileName)
+            If Not File.Exists(filePath) Then
+                File.Create(filePath).Dispose()
+                Return
+            End If
+            Dim lines = File.ReadAllLines(filePath)
+            For i As Integer = 0 To lines.Length - 1
+                players.addPlayer(lines(i), lines(i + 1), lines(i + 2), lines(i + 3), lines(i + 4))
+                i += 4
+            Next
+        End If
+
+        If CustomPath = True Then
+            filePath = Me.customFilePath
+            If Not File.Exists(filePath) Then
+                File.Create(filePath).Dispose()
+            End If
+            Dim lines = File.ReadAllLines(filePath)
+            For i As Integer = 0 To lines.Length - 1
+                players.addPlayer(lines(i), lines(i + 1), lines(i + 2), lines(i + 3), lines(i + 4))
+                i += 4
+            Next
+        End If
+    End Sub
+
+    Public Sub setCustomFilePath(cPath As Boolean, newFilePath As String)
+        Me.customFilePath = newFilePath
+        Me.CustomPath = cPath
     End Sub
 
     Sub statsjoueurs()
@@ -118,5 +170,9 @@ Public Class FormAccueil
             FormStats.ListBox_deviner.Items.Add(getPlayer(i).partieJ2)
             FormStats.ListBox_time.Items.Add(getPlayer(i).time)
         Next
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) 
+        MsgBox(customFilePath)
     End Sub
 End Class
