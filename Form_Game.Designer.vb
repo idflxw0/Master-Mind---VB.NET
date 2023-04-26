@@ -31,7 +31,6 @@ Partial Class Form_Game
         Me.guess_box2 = New System.Windows.Forms.TextBox()
         Me.guess_box1 = New System.Windows.Forms.TextBox()
         Me.label_codeColor = New System.Windows.Forms.Label()
-        Me.absent_label = New System.Windows.Forms.Label()
         Me.present_label = New System.Windows.Forms.Label()
         Me.PB_label = New System.Windows.Forms.Label()
         Me.playable_label = New System.Windows.Forms.Label()
@@ -135,6 +134,7 @@ Partial Class Form_Game
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.timer_label = New System.Windows.Forms.Label()
         Me.label_error_input = New System.Windows.Forms.Label()
+        Me.absent_label = New System.Windows.Forms.Label()
         Me.guess_panel.SuspendLayout()
         Me.panel_essais.SuspendLayout()
         Me.Panel15.SuspendLayout()
@@ -225,15 +225,6 @@ Partial Class Form_Game
         Me.label_codeColor.Size = New System.Drawing.Size(112, 18)
         Me.label_codeColor.TabIndex = 1
         Me.label_codeColor.Text = "Code Couleur"
-        '
-        'absent_label
-        '
-        Me.absent_label.AutoSize = True
-        Me.absent_label.Location = New System.Drawing.Point(362, 204)
-        Me.absent_label.Name = "absent_label"
-        Me.absent_label.Size = New System.Drawing.Size(49, 16)
-        Me.absent_label.TabIndex = 2
-        Me.absent_label.Text = "Absent"
         '
         'present_label
         '
@@ -1225,6 +1216,16 @@ Partial Class Form_Game
         Me.label_error_input.TabIndex = 14
         Me.label_error_input.Text = "seulement un seul des caractères autorisées!"
         '
+        'absent_label
+        '
+        Me.absent_label.AutoSize = True
+        Me.absent_label.ForeColor = System.Drawing.Color.Black
+        Me.absent_label.Location = New System.Drawing.Point(362, 204)
+        Me.absent_label.Name = "absent_label"
+        Me.absent_label.Size = New System.Drawing.Size(49, 16)
+        Me.absent_label.TabIndex = 2
+        Me.absent_label.Text = "Absent"
+        '
         'Form_Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1293,7 +1294,6 @@ Partial Class Form_Game
     Friend WithEvents guess_box2 As TextBox
     Friend WithEvents guess_box1 As TextBox
     Friend WithEvents label_codeColor As Label
-    Friend WithEvents absent_label As Label
     Friend WithEvents present_label As Label
     Friend WithEvents PB_label As Label
     Friend WithEvents playable_label As Label
@@ -1397,4 +1397,5 @@ Partial Class Form_Game
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents absent_label As Label
 End Class

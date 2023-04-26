@@ -5,9 +5,11 @@ Public Class Form_Game
 
     Private chances As Integer = 15
     Private guessed As Integer = 0
-    Private hidden_code As String = Form_Pattern_a_deviner.getMessage()
+    Private hidden_code As String
     Private seconds, minutes As Integer
-    Private Authorized_Characters As String = "#$£%@"
+    Private secondsLimit As Integer = 30
+    Private minutesLimit As Integer = 1
+    Private Authorized_Characters As String = Form_Pattern_a_deviner.getAuthorized_Character()
     Private added_letters As String
 
     Private index As Integer = 0 ' index pour comparer les lettres dans le textbox avec le hidden_code
@@ -28,9 +30,17 @@ Public Class Form_Game
     Private guessedLetter(4) As String
 
     'les codes couleurs pour identifier les couleurs
-    Private CodeColorGreen = 1
-    Private CodeColorBlue = 2
-    Private CodeColorWhite = 3
+    Private CodePAPColor = 1
+    Private CodePresentColor = 2
+    Private CodeAbsentColor = 3
+
+    Private absentColor As Color
+    Private presentColor As Color
+    Private PAPColor As Color
+
+    Private hasTimer As Boolean = True
+    Private hasMoreChanges As Integer = 0
+
 
     Private Sub hideAll()
         For Each hidePanel As Control In panel_essais.Controls
@@ -45,6 +55,7 @@ Public Class Form_Game
         label_found.Visible = False
         label_error_input.Visible = False
         label_lost.Visible = False
+        timer_label.Visible = False
     End Sub
 
     Private Function timer(sender As Object, e As EventArgs)
@@ -58,13 +69,39 @@ Public Class Form_Game
     End Function
 
     Private Function checkmate()
-        If Me.minutes = 1 AndAlso Me.seconds = 30 Then
+        If Me.minutes = minutesLimit AndAlso Me.seconds = secondsLimit Then
             Timer1.Stop()
             MsgBox("Vous avez perdu!", MsgBoxStyle.Critical, "Le temps est écoulé !")
         End If
         Return Nothing
     End Function
 
+    Public Sub havingTimer(startTimer As Boolean)
+        If startTimer = False Then
+            hasTimer = False
+            timer_label.Hide()
+
+        End If
+    End Sub
+
+    Public Sub setTimeLimit(min As Integer, sec As Integer)
+        secondsLimit = sec
+        minutesLimit = min
+    End Sub
+
+
+    Private Function getTimeAsIntger(label As Label) As Integer
+        Dim time As String = label.Text
+        Dim timeArray() As String = time.Split(":")
+        Dim minutes As Integer = Integer.Parse(timeArray(0))
+        Dim seconds As Integer = Integer.Parse(timeArray(1))
+        Return minutes * 60 + seconds
+    End Function
+
+
+    Public Sub setChances(i As Integer)
+        Me.chances = i
+    End Sub
 
     Private Function perfectlyPlaced(guessBox As Control) As Boolean
         If abesentLetter(guessBox) = False Then
@@ -90,6 +127,7 @@ Public Class Form_Game
                 Return False
             End If
         End If
+
         Return Nothing
     End Function
 
@@ -99,7 +137,9 @@ Public Class Form_Game
                 Return False
             End If
         Next
-        guessBox.BackColor = Color.White
+        If absent_label.ForeColor = Color.Black Then
+            guessBox.BackColor = Color.White
+        End If
         Return True
     End Function
 
@@ -140,14 +180,6 @@ Public Class Form_Game
         End Select
     End Function
 
-    Private Sub letterPlaced(guessBox As Control)
-        If perfectlyPlaced(guessBox) Then
-            guessBox.BackColor = Color.Green
-        ElseIf presentButNotPerfectlyPlaced(guessBox) Then
-            guessBox.BackColor = Color.Blue
-        End If
-    End Sub
-
     Private Sub resetIndexs()
         intColorIndex = 0
         labelColorIndex = 0
@@ -155,54 +187,75 @@ Public Class Form_Game
         index = 0
     End Sub
 
-    Private Function getTimeAsIntger(label As Label) As Integer
-        Dim time As String = label.Text
-        Dim timeArray() As String = time.Split(":")
-        Dim minutes As Integer = Integer.Parse(timeArray(0))
-        Dim seconds As Integer = Integer.Parse(timeArray(1))
-        Return minutes * 60 + seconds
-    End Function
-
+    Private Sub letterPlaced(guessBox As Control)
+        SetColors()
+        If perfectlyPlaced(guessBox) Then
+            guessBox.BackColor = PAPColor
+        ElseIf presentButNotPerfectlyPlaced(guessBox) Then
+            guessBox.BackColor = presentColor
+        ElseIf abesentLetter(guessBox) Then
+            If absent_label.ForeColor <> Color.Black Then
+                guessBox.BackColor = absent_label.ForeColor
+            End If
+        End If
+    End Sub
     Private Sub showLabel()
         For Each label As Control In Me.getPanelOrder(guessed).Controls
             If TypeOf label Is Label Then
                 label.Visible = True
-                If codeColor(labelColorIndex) = CodeColorGreen Then
+                If codeColor(labelColorIndex) = CodePAPColor Then
                     label.Text = guessedLetter(labelColorIndex)
-                    label.ForeColor = Color.Green
+                    label.ForeColor = PAPColor
                     labelColorIndex += 1
-                ElseIf codeColor(labelColorIndex) = CodeColorBlue Then
+                ElseIf codeColor(labelColorIndex) = CodePresentColor Then
                     label.Text = guessedLetter(labelColorIndex)
-                    label.ForeColor = Color.Blue
+                    label.ForeColor = presentColor
                     labelColorIndex += 1
-                ElseIf codeColor(labelColorIndex) = CodeColorWhite Then
+                ElseIf codeColor(labelColorIndex) = CodeAbsentColor Then
                     label.Text = guessedLetter(labelColorIndex)
-                    label.ForeColor = Color.Black
-                    labelColorIndex += 1
+                    If absentColor = Color.White Then
+                        label.ForeColor = Color.Black
+                        labelColorIndex += 1
+                    Else
+                        label.ForeColor = absentColor
+                        labelColorIndex += 1
+                    End If
                 End If
             End If
         Next
     End Sub
-
     Private Sub addColorAndLettersToLabel(guessBox As Control)
-        If guessBox.BackColor = Color.Green Then
-            codeColor(intColorIndex) = CodeColorGreen
-            intColorIndex += 1
-        ElseIf guessBox.BackColor = Color.Blue Then
-            codeColor(intColorIndex) = CodeColorBlue
-            intColorIndex += 1
-        ElseIf guessBox.BackColor = Color.White Then
-            codeColor(intColorIndex) = CodeColorWhite
+        If guessBox.BackColor = PAPColor Then
+            codeColor(intColorIndex) = CodePAPColor
             intColorIndex += 1
         End If
-
+        If guessBox.BackColor = presentColor Then
+            codeColor(intColorIndex) = CodePresentColor
+            intColorIndex += 1
+        End If
+        If guessBox.BackColor = absentColor Or guessBox.BackColor = Color.White Then
+            codeColor(intColorIndex) = CodeAbsentColor
+            intColorIndex += 1
+        End If
         guessedLetter(GuessedLetterIndex) = guessBox.Text
         GuessedLetterIndex += 1
     End Sub
 
+
+    Private indexhasMoreChances As Integer = 0
     Private Sub Guess_Button_Click(sender As Object, e As EventArgs) Handles Guess_Button.Click
         guessed += 1
-        Me.Text = "Il vous reste " & chances - guessed & " coup(s)..."
+        If Me.guessed > 15 Then
+            havingMoreChances()
+            indexhasMoreChances += 1
+        End If
+        If indexhasMoreChances = 0 Then
+            Me.Text = "Il vous reste " & chances - guessed & " coup(s)..."
+        End If
+        If indexhasMoreChances >= 1 Then
+            hasMoreChanges += 1
+            Me.Text = "Il vous reste " & chances - hasMoreChanges & " coup(s)..."
+        End If
         For Each guess_box As Control In guess_panel.Controls
             If TypeOf guess_box Is TextBox Then
                 If guess_box.Text = String.Empty Then
@@ -219,9 +272,7 @@ Public Class Form_Game
                     label_found.Visible = True
                     Guess_Button.Enabled = False
                 End If
-
                 addColorAndLettersToLabel(guess_box)
-
             End If
         Next
 
@@ -241,23 +292,58 @@ Public Class Form_Game
             End If
         End If
 
+        If indexhasMoreChances >= 1 Then
+            If added_letters <> hidden_code Then
+                If hasMoreChanges <> chances Then
+                    added_letters = ""
+                ElseIf hasMoreChanges = chances Then
+                    Timer1.Stop()
+                    label_lost.Visible = True
+                    Guess_Button.Enabled = False
+                    addPlayer(FormAccueil.ComboBox1.Text, 1, 1, 0, 0)
+                    addPlayer(FormAccueil.ComboBox2.Text, 0, 0, 1, getTimeAsIntger(timer_label))
+                    MsgBox("vous avez épuisé vos chances !", MsgBoxStyle.Critical, "Vous avez perdu!")
+                    Exit Sub
+                End If
+            End If
+        End If
         resetIndexs()
     End Sub
 
-    Public Sub setAbsentColor(Label As Label)
-        absent_label.ForeColor = Label.ForeColor
+    Public Sub ClearAllPanel()
+        For Each hidePanel As Control In panel_essais.Controls
+            If TypeOf hidePanel Is Panel Then
+                For Each hidelabel As Control In hidePanel.Controls
+                    If TypeOf hidelabel Is Label Then
+                        hidelabel.Visible = False
+                    End If
+                Next
+            End If
+        Next
     End Sub
 
-    Public Sub setPresentColor(Label As Label)
-        present_label.ForeColor = Label.ForeColor
+    Private Sub havingMoreChances()
+        ClearAllPanel()
+        Me.hasMoreChanges = guessed - 1
+        guessed = 1
     End Sub
 
-    Public Sub setPresentAndPerfectlyPlaced(Label As Label)
-        PB_label.ForeColor = Label.ForeColor
+
+    Public Sub setAbsentColor(LabelAbsent As Label, LabelPresent As Label, LabelPerfect As Label)
+        absent_label.ForeColor = LabelAbsent.ForeColor
+        present_label.ForeColor = LabelPresent.ForeColor
+        PB_label.ForeColor = LabelPerfect.ForeColor
     End Sub
 
-    Public Sub setCharLabel(label As Label)
-        char_label.Text = label.Text
+    Public Sub setAbsentLabelColor(label As Label)
+        absent_label.ForeColor = label.ForeColor
+    End Sub
+
+    Public Sub setPresentLabelColor(lable As Label)
+        present_label.ForeColor = lable.ForeColor
+    End Sub
+    Public Sub setPerfectLabelColor(label As Label)
+        PB_label.ForeColor = label.ForeColor
     End Sub
 
     Public Function getAbsentColor() As Color
@@ -271,13 +357,25 @@ Public Class Form_Game
         Return PB_label.ForeColor
     End Function
 
+
     Private Sub Form_Game_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Il vous reste " & chances & " coup(s)..."
         Me.hideAll()
-        Me.Timer1.Start()
-        Me.Timer1.Interval = 1000
-        Me.Timer1_Tick(sender, e)
+        hidden_code = Form_Pattern_a_deviner.getMessage()
+        If hasTimer Then
+            Me.Timer1.Start()
+            Me.Timer1.Interval = 1000
+            Me.Timer1_Tick(sender, e)
+            timer_label.Visible = True
+        End If
+        char_label.Text = Form_Pattern_a_deviner.getAuthorized_Character
+        SetColors()
+    End Sub
 
+    Private Sub SetColors()
+        absentColor = getAbsentColor()
+        presentColor = getPresentColor()
+        PAPColor = getPBPcolor()
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick

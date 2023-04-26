@@ -9,10 +9,21 @@
 
     Private player(2) As Splayers
     Private total_player As Integer = 0
+    Private hide_code As String
+
 
     Public Sub addTotalPlayer()
         total_player += 1
     End Sub
+
+    Public Sub setHideCode(text As String)
+        hide_code = text
+    End Sub
+
+
+    Public Function getHideCode() As String
+        Return hide_code
+    End Function
 
     Public Function getnumPlayer() As Integer
         Return total_player
@@ -134,6 +145,8 @@
         swap(array, partitionIndex, pivotIndex)
         Return partitionIndex
     End Function
+
+
 
     Private Sub swap(array() As Splayers, index1 As Integer, index2 As Integer)
         Dim temp As Splayers = array(index1)
