@@ -5,6 +5,7 @@
         Dim partieJ1 As Integer
         Dim partieJ2 As Integer
         Dim time As Integer
+        Dim accumulatedTime As Integer
     End Structure
 
     Private player(2) As Splayers
@@ -37,7 +38,7 @@
         Return previous_code
     End Function
 
-    Public Sub addPlayer(nom As String, score As Integer, partieJ1 As Integer, partieJ2 As Integer, time As Integer)
+    Public Sub addPlayer(nom As String, score As Integer, partieJ1 As Integer, partieJ2 As Integer, time As Integer, accumulatedTime As Integer)
 
         Dim playerIndex As Integer = getPlayerIndex(nom)
 
@@ -48,13 +49,15 @@
             If player(playerIndex).time = Nothing Then
                 player(playerIndex).time = time
             End If
+            player(playerIndex).accumulatedTime = accumulatedTime
         Else
-                Dim newPlayer As Splayers
+            Dim newPlayer As Splayers
             newPlayer.nom = nom
             newPlayer.score = score
             newPlayer.partieJ1 = partieJ1
             newPlayer.partieJ2 = partieJ2
             newPlayer.time = time
+            newPlayer.accumulatedTime += accumulatedTime
 
             If total_player >= player.Length Then
                 ReDim Preserve player((player.Length - 1) + 5)
@@ -97,6 +100,10 @@
         Sort(player, 0, total_player - 1, "time")
     End Sub
 
+    Public Sub sortByTotalTime()
+        Sort(player, 0, total_player - 1, "cumul temps")
+    End Sub
+
     Private Sub Sort(array() As Splayers, lowIndex As Integer, highIndex As Integer, sortProperty As String)
         If lowIndex >= highIndex Then
             Exit Sub
@@ -118,6 +125,8 @@
                 pivotValue = array(highIndex).score
             Case "time"
                 pivotValue = array(highIndex).time
+            Case "cumul temps"
+                pivotValue = array(highIndex).accumulatedTime
         End Select
 
         Dim partitionIndex As Integer = lowIndex - 1
@@ -132,6 +141,8 @@
                     compareValue = array(i).score
                 Case "time"
                     compareValue = array(i).time
+                Case "cumul temps"
+                    compareValue = array(i).accumulatedTime
             End Select
 
             If sortProperty = "nom" Then
@@ -140,7 +151,7 @@
                     swap(array, partitionIndex, i)
                 End If
             End If
-            If sortProperty = "score" Or sortProperty = "time" Then
+            If sortProperty = "score" Or sortProperty = "time" Or sortProperty = "cumul temps" Then
                 If compareValue >= pivotValue Then
                     partitionIndex += 1
                     swap(array, partitionIndex, i)
@@ -153,7 +164,6 @@
         swap(array, partitionIndex, pivotIndex)
         Return partitionIndex
     End Function
-
 
 
     Private Sub swap(array() As Splayers, index1 As Integer, index2 As Integer)

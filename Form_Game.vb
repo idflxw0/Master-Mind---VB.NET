@@ -266,9 +266,9 @@ Public Class Form_Game
                 added_letters += guess_box.Text
                 If added_letters = hidden_code Then
                     Timer1.Stop()
-                    addPlayer(FormAccueil.ComboBox1.Text, 0, 1, 0, 0)
-                    addPlayer(FormAccueil.ComboBox2.Text, 1, 0, 1, getTimeAsIntger(timer_label))
-                    players.setTheNewBestTime(FormAccueil.ComboBox2.Text, getTimeAsIntger(timer_label))
+                    addPlayer(FormAccueil.ComboBox1.Text, 0, 1, 0, 0, 0)
+                    addPlayer(FormAccueil.ComboBox2.Text, 1, 0, 1, getTimeAsIntger(timer_label), getTimeAsIntger(timer_label))
+                    'players.setTheNewBestTime(FormAccueil.ComboBox2.Text, getTimeAsIntger(timer_label))
                     label_found.Visible = True
                     Guess_Button.Enabled = False
                     players.setPreviousCode(hidden_code)
@@ -286,8 +286,8 @@ Public Class Form_Game
                 Timer1.Stop()
                 label_lost.Visible = True
                 Guess_Button.Enabled = False
-                addPlayer(FormAccueil.ComboBox1.Text, 1, 1, 0, 0)
-                addPlayer(FormAccueil.ComboBox2.Text, 0, 0, 1, getTimeAsIntger(timer_label))
+                addPlayer(FormAccueil.ComboBox1.Text, 1, 1, 0, 0, 0)
+                addPlayer(FormAccueil.ComboBox2.Text, 0, 0, 1, getTimeAsIntger(timer_label), getTimeAsIntger(timer_label))
                 players.setPreviousCode(hidden_code)
                 MsgBox("vous avez épuisé vos chances !", MsgBoxStyle.Critical, "Vous avez perdu!")
                 Exit Sub
@@ -302,8 +302,8 @@ Public Class Form_Game
                     Timer1.Stop()
                     label_lost.Visible = True
                     Guess_Button.Enabled = False
-                    addPlayer(FormAccueil.ComboBox1.Text, 1, 1, 0, 0)
-                    addPlayer(FormAccueil.ComboBox2.Text, 0, 0, 1, getTimeAsIntger(timer_label))
+                    addPlayer(FormAccueil.ComboBox1.Text, 1, 1, 0, 0, 0)
+                    addPlayer(FormAccueil.ComboBox2.Text, 0, 0, 1, getTimeAsIntger(timer_label), getTimeAsIntger(timer_label))
                     players.setPreviousCode(hidden_code)
                     MsgBox("vous avez épuisé vos chances !", MsgBoxStyle.Critical, "Vous avez perdu!")
                     Exit Sub

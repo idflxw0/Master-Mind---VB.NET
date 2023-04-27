@@ -6,6 +6,7 @@
         ListBox_Pattern.Items.Clear()
         ListBox_deviner.Items.Clear()
         ListBox_time.Items.Clear()
+        ListBox_CumuleTemps.Items.Clear()
     End Sub
 
     Private Sub FromStats_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -15,6 +16,7 @@
             ListBox_Pattern.Items.Add(players.getPlayer(i).partieJ1)
             ListBox_deviner.Items.Add(players.getPlayer(i).partieJ2)
             ListBox_time.Items.Add(players.getPlayer(i).time)
+            ListBox_CumuleTemps.Items.Add(players.getPlayer(i).accumulatedTime)
         Next
     End Sub
 
@@ -48,6 +50,12 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button_time.Click
         ClearAll()
         players.sortByTime()
+        FormAccueil.statsjoueurs()
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        ClearAll()
+        players.sortByTotalTime()
         FormAccueil.statsjoueurs()
     End Sub
 End Class

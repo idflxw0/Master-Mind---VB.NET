@@ -105,6 +105,7 @@ Public Class FormAccueil
             lines.Add(getPlayer(i).partieJ1)
             lines.Add(getPlayer(i).partieJ2)
             lines.Add(getPlayer(i).time)
+            lines.Add(getPlayer(i).accumulatedTime)
         Next
         Dim fileName = "players.txt"
         Dim filePath
@@ -123,7 +124,6 @@ Public Class FormAccueil
             End If
             File.WriteAllLines(filePath, lines)
         End If
-
     End Sub
 
     Private Sub getPlayersFromFile()
@@ -137,8 +137,8 @@ Public Class FormAccueil
             End If
             Dim lines = File.ReadAllLines(filePath)
             For i As Integer = 0 To lines.Length - 1
-                players.addPlayer(lines(i), lines(i + 1), lines(i + 2), lines(i + 3), lines(i + 4))
-                i += 4
+                players.addPlayer(lines(i), lines(i + 1), lines(i + 2), lines(i + 3), lines(i + 4), lines(i + 5))
+                i += 5
             Next
         End If
 
@@ -149,8 +149,8 @@ Public Class FormAccueil
             End If
             Dim lines = File.ReadAllLines(filePath)
             For i As Integer = 0 To lines.Length - 1
-                players.addPlayer(lines(i), lines(i + 1), lines(i + 2), lines(i + 3), lines(i + 4))
-                i += 4
+                players.addPlayer(lines(i), lines(i + 1), lines(i + 2), lines(i + 3), lines(i + 4), lines(i + 5))
+                i += 5
             Next
         End If
     End Sub
@@ -162,13 +162,13 @@ Public Class FormAccueil
 
     Sub statsjoueurs()
         FormStats.ClearAll()
-
         For i As Integer = 0 To players.getnumPlayer - 1
             FormStats.ListBox_Name.Items.Add(getPlayer(i).nom)
             FormStats.ListBox_Score.Items.Add(getPlayer(i).score)
             FormStats.ListBox_Pattern.Items.Add(getPlayer(i).partieJ1)
             FormStats.ListBox_deviner.Items.Add(getPlayer(i).partieJ2)
             FormStats.ListBox_time.Items.Add(getPlayer(i).time)
+            FormStats.ListBox_CumuleTemps.Items.Add(getPlayer(i).accumulatedTime)
         Next
     End Sub
 

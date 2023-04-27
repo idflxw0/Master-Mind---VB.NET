@@ -36,6 +36,9 @@ Partial Class FormStats
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.button_time = New System.Windows.Forms.Button()
+        Me.ListBox_CumuleTemps = New System.Windows.Forms.ListBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox_Name
@@ -94,7 +97,7 @@ Partial Class FormStats
         '
         'button_return
         '
-        Me.button_return.Location = New System.Drawing.Point(788, 480)
+        Me.button_return.Location = New System.Drawing.Point(1010, 480)
         Me.button_return.Name = "button_return"
         Me.button_return.Size = New System.Drawing.Size(222, 40)
         Me.button_return.TabIndex = 6
@@ -103,7 +106,7 @@ Partial Class FormStats
         '
         'Button_score
         '
-        Me.Button_score.Location = New System.Drawing.Point(285, 480)
+        Me.Button_score.Location = New System.Drawing.Point(273, 480)
         Me.Button_score.Name = "Button_score"
         Me.Button_score.Size = New System.Drawing.Size(222, 40)
         Me.Button_score.TabIndex = 7
@@ -157,18 +160,48 @@ Partial Class FormStats
         '
         'button_time
         '
-        Me.button_time.Location = New System.Drawing.Point(543, 480)
+        Me.button_time.Location = New System.Drawing.Point(517, 480)
         Me.button_time.Name = "button_time"
         Me.button_time.Size = New System.Drawing.Size(222, 40)
         Me.button_time.TabIndex = 13
         Me.button_time.Text = "Par temps"
         Me.button_time.UseVisualStyleBackColor = True
         '
+        'ListBox_CumuleTemps
+        '
+        Me.ListBox_CumuleTemps.FormattingEnabled = True
+        Me.ListBox_CumuleTemps.ItemHeight = 16
+        Me.ListBox_CumuleTemps.Location = New System.Drawing.Point(1062, 47)
+        Me.ListBox_CumuleTemps.Name = "ListBox_CumuleTemps"
+        Me.ListBox_CumuleTemps.Size = New System.Drawing.Size(170, 404)
+        Me.ListBox_CumuleTemps.TabIndex = 14
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(1095, 9)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(100, 16)
+        Me.Label6.TabIndex = 15
+        Me.Label6.Text = "Le cumul temps"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(759, 480)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(222, 40)
+        Me.Button1.TabIndex = 16
+        Me.Button1.Text = "Par cumule temps"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FormStats
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1047, 532)
+        Me.ClientSize = New System.Drawing.Size(1255, 532)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.ListBox_CumuleTemps)
         Me.Controls.Add(Me.button_time)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
@@ -204,4 +237,7 @@ Partial Class FormStats
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents button_time As Button
+    Friend WithEvents ListBox_CumuleTemps As ListBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Button1 As Button
 End Class
