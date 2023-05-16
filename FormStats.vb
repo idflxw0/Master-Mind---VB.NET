@@ -10,6 +10,7 @@
     End Sub
 
     Private Sub FromStats_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Text = "Statistique"
         For i As Integer = 0 To players.getnumPlayer() - 1
             ListBox_Name.Items.Add(players.getPlayer(i).nom)
             ListBox_Score.Items.Add(players.getPlayer(i).score)
@@ -28,7 +29,7 @@
     Private Sub buttonSortAlpha(sender As Object, e As EventArgs) Handles Sort_alpha.Click
         ClearAll()
         players.sortByOrderAlpha()
-        FormAccueil.statsjoueurs()
+        FormAccueil.playerStats()
     End Sub
 
     Private Sub ListBox_Name_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox_Name.SelectedIndexChanged, ListBox_Score.SelectedIndexChanged, ListBox_Pattern.SelectedIndexChanged, ListBox_deviner.SelectedIndexChanged, ListBox_time.SelectedIndexChanged
@@ -40,22 +41,21 @@
         ListBox_time.SelectedIndex = index
     End Sub
 
-
     Private Sub buttonSortScore(sender As Object, e As EventArgs) Handles Button_score.Click
         ClearAll()
         players.sortByScore()
-        FormAccueil.statsjoueurs()
+        FormAccueil.playerStats()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button_time.Click
         ClearAll()
         players.sortByTime()
-        FormAccueil.statsjoueurs()
+        FormAccueil.playerStats()
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
         ClearAll()
         players.sortByTotalTime()
-        FormAccueil.statsjoueurs()
+        FormAccueil.playerStats()
     End Sub
 End Class

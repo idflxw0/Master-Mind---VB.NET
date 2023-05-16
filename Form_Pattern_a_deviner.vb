@@ -18,13 +18,14 @@
 
     Private Sub button_hide_Click(sender As Object, e As EventArgs) Handles button_hide.Click
         setHiddenCode(Panel1)
+        If hidden_code = String.Empty Then
+            MsgBox("ajoutez votre message à cacher dans le cas!", MsgBoxStyle.Critical, "Erreur")
+            Exit Sub
+        End If
         If hidden_code = players.getPreviousCode Then
             MsgBox("Vous devez proposer une nouvelle combinaison!", MsgBoxStyle.Critical, "Erreur")
             hidden_code = String.Empty
             Exit Sub
-        End If
-        If hidden_code = String.Empty Then
-            setHiddenCode(Panel1)
         End If
         Me.Hide()
         players.setHideCode(hidden_code)
@@ -40,13 +41,10 @@
 
 
     Public Sub setHiddenCode(panel As Panel)
-        For Each txtBox As Control In Panel1.Controls
+        For Each txtBox As Control In panel.Controls
             If TypeOf txtBox Is TextBox Then
                 If txtBox.Text <> String.Empty Then
                     hidden_code += txtBox.Text
-                Else
-                    MessageBox.Show("ajoutez votre message à cacher dans le cas!", "Erreur")
-                    Exit Sub
                 End If
             End If
         Next

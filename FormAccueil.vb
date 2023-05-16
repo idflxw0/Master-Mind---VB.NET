@@ -6,6 +6,7 @@ Public Class FormAccueil
     Private CustomPath As Boolean = False
     Private customFilePath As String
     Private Sub FormAccueil_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Text = "Accueil"
         getPlayersFromFile()
         For i As Integer = 0 To players.getnumPlayer - 1
             ComboBox1.Items.Add(players.getPlayer(i).nom)
@@ -65,8 +66,6 @@ Public Class FormAccueil
         End If
 
         If canGo Then
-            ' addPlayerToComboBox(ComboBox1, ComboBox2)
-
             Me.Hide()
             Form_Pattern_a_deviner.Show()
         End If
@@ -160,7 +159,7 @@ Public Class FormAccueil
         Me.CustomPath = cPath
     End Sub
 
-    Sub statsjoueurs()
+    Public Sub playerStats()
         FormStats.ClearAll()
         For i As Integer = 0 To players.getnumPlayer - 1
             FormStats.ListBox_Name.Items.Add(getPlayer(i).nom)
@@ -170,9 +169,5 @@ Public Class FormAccueil
             FormStats.ListBox_time.Items.Add(getPlayer(i).time)
             FormStats.ListBox_CumuleTemps.Items.Add(getPlayer(i).accumulatedTime)
         Next
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) 
-        MsgBox(customFilePath)
     End Sub
 End Class

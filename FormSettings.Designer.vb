@@ -69,6 +69,7 @@ Partial Class FormSettings
         Me.filePath_no = New System.Windows.Forms.RadioButton()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.filePath_yes = New System.Windows.Forms.RadioButton()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -392,9 +393,9 @@ Partial Class FormSettings
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(44, 12)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(156, 16)
+        Me.Label5.Size = New System.Drawing.Size(162, 16)
         Me.Label5.TabIndex = 9
-        Me.Label5.Text = "Modifier le lime de temps"
+        Me.Label5.Text = "Modifier la limite de temps"
         '
         'TimeLimit_Button_no
         '
@@ -550,9 +551,6 @@ Partial Class FormSettings
         Me.filePath_yes.Text = "Oui"
         Me.filePath_yes.UseVisualStyleBackColor = True
         '
-        'FolderBrowserDialog1
-        '
-        '
         'FormSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -633,4 +631,5 @@ Partial Class FormSettings
     Friend WithEvents Label10 As Label
     Friend WithEvents filePath_yes As RadioButton
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class

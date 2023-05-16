@@ -230,10 +230,10 @@ Public Class FormSettings
     End Sub
 
     Private Sub Button_browse_Click(sender As Object, e As EventArgs) Handles Button_browse.Click
-        If FolderBrowserDialog1.ShowDialog = DialogResult.OK Then
-            FilePathTextBox.Text = FolderBrowserDialog1.SelectedPath
+        Dim dialog As New FolderBrowserDialog()
+        If dialog.ShowDialog() = DialogResult.OK Then
+            FilePathTextBox.Text = dialog.SelectedPath
         End If
-
     End Sub
 
 

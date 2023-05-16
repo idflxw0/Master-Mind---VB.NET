@@ -24,10 +24,10 @@ Public Class Form_Game
     Private GuessedLetterIndex As Integer
 
     'tableau pour stocker les codes couleurs des lettres
-    Private codeColor(4) As Integer
+    Private codeColor(5) As Integer
 
     'tableau pour stocker les lettres devinées
-    Private guessedLetter(4) As String
+    Private guessedLetter(5) As String
 
     'les codes couleurs pour identifier les couleurs
     Private CodePAPColor = 1
@@ -39,55 +39,35 @@ Public Class Form_Game
     Private PAPColor As Color
 
     Private hasTimer As Boolean = True
-    Private hasMoreChanges As Integer = 0
+    Private hasMoreChances As Integer = 0
 
-
-    Private Sub hideAll()
-        For Each hidePanel As Control In panel_essais.Controls
-            If TypeOf hidePanel Is Panel Then
-                For Each hidelabel As Control In hidePanel.Controls
-                    If TypeOf hidelabel Is Label Then
-                        hidelabel.Visible = False
-                    End If
-                Next
-            End If
-        Next
-        label_found.Visible = False
-        label_error_input.Visible = False
-        label_lost.Visible = False
-        timer_label.Visible = False
-    End Sub
-
-    Private Function timer(sender As Object, e As EventArgs)
-        timer_label.Text = Format(minutes, "00:") & Format(seconds, "00")
-        seconds += 1
-        If seconds = 60 Then
-            minutes += 1
-            seconds = 0
-        End If
-        Return Nothing
-    End Function
-
-    Private Function checkmate()
-        If Me.minutes = minutesLimit AndAlso Me.seconds = secondsLimit Then
-            Timer1.Stop()
-            MsgBox("Vous avez perdu!", MsgBoxStyle.Critical, "Le temps est écoulé !")
-        End If
-        Return Nothing
-    End Function
-
-    Public Sub havingTimer(startTimer As Boolean)
-        If startTimer = False Then
-            hasTimer = False
-            timer_label.Hide()
-
-        End If
-    End Sub
 
     Public Sub setTimeLimit(min As Integer, sec As Integer)
         secondsLimit = sec
         minutesLimit = min
     End Sub
+
+    Public Sub setAbsentLabelColor(label As Label)
+        absent_label.ForeColor = label.ForeColor
+    End Sub
+
+    Public Sub setPresentLabelColor(lable As Label)
+        present_label.ForeColor = lable.ForeColor
+    End Sub
+    Public Sub setPerfectLabelColor(label As Label)
+        PB_label.ForeColor = label.ForeColor
+    End Sub
+
+    Public Function getAbsentColor() As Color
+        Return absent_label.ForeColor
+    End Function
+
+    Public Function getPresentColor() As Color
+        Return present_label.ForeColor
+    End Function
+    Public Function getPBPcolor() As Color
+        Return PB_label.ForeColor
+    End Function
 
 
     Private Function getTimeAsIntger(label As Label) As Integer
@@ -99,9 +79,25 @@ Public Class Form_Game
     End Function
 
 
-    Public Sub setChances(i As Integer)
-        Me.chances = i
-    End Sub
+
+    Private Function timer(sender As Object, e As EventArgs)
+        seconds += 1
+        timer_label.Text = Format(minutes, "00:") & Format(seconds, "00")
+        If seconds = 60 Then
+            minutes += 1
+            seconds = 0
+        End If
+        Return Nothing
+    End Function
+
+    Private Function checkmate()
+        If Me.minutes = minutesLimit AndAlso Me.seconds = secondsLimit Then
+            Timer1.Stop()
+            label_lost.Visible = True
+            MsgBox("Vous avez perdu!", MsgBoxStyle.Critical, "Le temps est écoulé !")
+        End If
+        Return Nothing
+    End Function
 
     Private Function perfectlyPlaced(guessBox As Control) As Boolean
         If abesentLetter(guessBox) = False Then
@@ -180,6 +176,33 @@ Public Class Form_Game
         End Select
     End Function
 
+    Private Sub hideAll()
+        For Each hidePanel As Control In panel_essais.Controls
+            If TypeOf hidePanel Is Panel Then
+                For Each hidelabel As Control In hidePanel.Controls
+                    If TypeOf hidelabel Is Label Then
+                        hidelabel.Visible = False
+                    End If
+                Next
+            End If
+        Next
+        label_found.Visible = False
+        label_error_input.Visible = False
+        label_lost.Visible = False
+        timer_label.Visible = False
+    End Sub
+
+    Public Sub havingTimer(startTimer As Boolean)
+        If startTimer = False Then
+            hasTimer = False
+            timer_label.Hide()
+
+        End If
+    End Sub
+
+    Public Sub setChances(i As Integer)
+        Me.chances = i
+    End Sub
     Private Sub resetIndexs()
         intColorIndex = 0
         labelColorIndex = 0
@@ -241,10 +264,43 @@ Public Class Form_Game
         GuessedLetterIndex += 1
     End Sub
 
+    Public Sub ClearAllPanel()
+        For Each hidePanel As Control In panel_essais.Controls
+            If TypeOf hidePanel Is Panel Then
+                For Each hidelabel As Control In hidePanel.Controls
+                    If TypeOf hidelabel Is Label Then
+                        hidelabel.Visible = False
+                    End If
+                Next
+            End If
+        Next
+    End Sub
+
+    Private Sub havingMoreChances()
+        ClearAllPanel()
+        Me.hasMoreChances = guessed - 1
+        guessed = 1
+    End Sub
+
+
+
+    Public Sub setAbsentColor(LabelAbsent As Label, LabelPresent As Label, LabelPerfect As Label)
+        absent_label.ForeColor = LabelAbsent.ForeColor
+        present_label.ForeColor = LabelPresent.ForeColor
+        PB_label.ForeColor = LabelPerfect.ForeColor
+    End Sub
+
+    Private Sub SetColors()
+        absentColor = getAbsentColor()
+        presentColor = getPresentColor()
+        PAPColor = getPBPcolor()
+    End Sub
+
 
     Private indexhasMoreChances As Integer = 0
     Private Sub Guess_Button_Click(sender As Object, e As EventArgs) Handles Guess_Button.Click
         guessed += 1
+
         If Me.guessed > 15 Then
             havingMoreChances()
             indexhasMoreChances += 1
@@ -253,22 +309,29 @@ Public Class Form_Game
             Me.Text = "Il vous reste " & chances - guessed & " coup(s)..."
         End If
         If indexhasMoreChances >= 1 Then
-            hasMoreChanges += 1
-            Me.Text = "Il vous reste " & chances - hasMoreChanges & " coup(s)..."
+            hasMoreChances += 1
+            Me.Text = "Il vous reste " & chances - hasMoreChances & " coup(s)..."
         End If
+
         For Each guess_box As Control In guess_panel.Controls
             If TypeOf guess_box Is TextBox Then
                 If guess_box.Text = String.Empty Then
-                    MessageBox.Show("Veuillez remplir tous les champs!", "Erreur")
+                    guessed -= 1
+                    MsgBox("Veuillez remplir tous les champs!", MsgBoxStyle.Critical, "Erreur")
                     Exit Sub
                 End If
+            End If
+        Next
+
+        For Each guess_box As Control In guess_panel.Controls
+            If TypeOf guess_box Is TextBox Then
                 letterPlaced(guess_box)
                 added_letters += guess_box.Text
                 If added_letters = hidden_code Then
                     Timer1.Stop()
                     addPlayer(FormAccueil.ComboBox1.Text, 0, 1, 0, 0, 0)
                     addPlayer(FormAccueil.ComboBox2.Text, 1, 0, 1, getTimeAsIntger(timer_label), getTimeAsIntger(timer_label))
-                    'players.setTheNewBestTime(FormAccueil.ComboBox2.Text, getTimeAsIntger(timer_label))
+                    players.setTheNewBestTime(FormAccueil.ComboBox2.Text, getTimeAsIntger(timer_label))
                     label_found.Visible = True
                     Guess_Button.Enabled = False
                     players.setPreviousCode(hidden_code)
@@ -296,9 +359,9 @@ Public Class Form_Game
 
         If indexhasMoreChances >= 1 Then
             If added_letters <> hidden_code Then
-                If hasMoreChanges <> chances Then
+                If hasMoreChances <> chances Then
                     added_letters = ""
-                ElseIf hasMoreChanges = chances Then
+                ElseIf hasMoreChances = chances Then
                     Timer1.Stop()
                     label_lost.Visible = True
                     Guess_Button.Enabled = False
@@ -313,52 +376,6 @@ Public Class Form_Game
         resetIndexs()
     End Sub
 
-    Public Sub ClearAllPanel()
-        For Each hidePanel As Control In panel_essais.Controls
-            If TypeOf hidePanel Is Panel Then
-                For Each hidelabel As Control In hidePanel.Controls
-                    If TypeOf hidelabel Is Label Then
-                        hidelabel.Visible = False
-                    End If
-                Next
-            End If
-        Next
-    End Sub
-
-    Private Sub havingMoreChances()
-        ClearAllPanel()
-        Me.hasMoreChanges = guessed - 1
-        guessed = 1
-    End Sub
-
-
-    Public Sub setAbsentColor(LabelAbsent As Label, LabelPresent As Label, LabelPerfect As Label)
-        absent_label.ForeColor = LabelAbsent.ForeColor
-        present_label.ForeColor = LabelPresent.ForeColor
-        PB_label.ForeColor = LabelPerfect.ForeColor
-    End Sub
-
-    Public Sub setAbsentLabelColor(label As Label)
-        absent_label.ForeColor = label.ForeColor
-    End Sub
-
-    Public Sub setPresentLabelColor(lable As Label)
-        present_label.ForeColor = lable.ForeColor
-    End Sub
-    Public Sub setPerfectLabelColor(label As Label)
-        PB_label.ForeColor = label.ForeColor
-    End Sub
-
-    Public Function getAbsentColor() As Color
-        Return absent_label.ForeColor
-    End Function
-
-    Public Function getPresentColor() As Color
-        Return present_label.ForeColor
-    End Function
-    Public Function getPBPcolor() As Color
-        Return PB_label.ForeColor
-    End Function
 
 
     Private Sub Form_Game_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -375,11 +392,7 @@ Public Class Form_Game
         SetColors()
     End Sub
 
-    Private Sub SetColors()
-        absentColor = getAbsentColor()
-        presentColor = getPresentColor()
-        PAPColor = getPBPcolor()
-    End Sub
+
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         timer(sender, e)

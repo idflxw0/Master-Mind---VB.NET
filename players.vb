@@ -49,7 +49,7 @@
             If player(playerIndex).time = Nothing Then
                 player(playerIndex).time = time
             End If
-            player(playerIndex).accumulatedTime = accumulatedTime
+            player(playerIndex).accumulatedTime += accumulatedTime
         Else
             Dim newPlayer As Splayers
             newPlayer.nom = nom
@@ -83,12 +83,9 @@
         Next
     End Sub
 
-
     Public Function getPlayer(index As Integer) As Splayers
         Return player(index)
     End Function
-
-
     Public Sub sortByOrderAlpha()
         Sort(player, 0, total_player - 1, "nom")
     End Sub
@@ -108,7 +105,6 @@
         If lowIndex >= highIndex Then
             Exit Sub
         End If
-
         Dim pivotIndex As Integer = partition(array, lowIndex, highIndex, sortProperty)
         Sort(array, lowIndex, pivotIndex - 1, sortProperty)
         Sort(array, pivotIndex + 1, highIndex, sortProperty)
@@ -174,5 +170,6 @@
 
     Sub main()
         Application.Run(FormAccueil)
+
     End Sub
 End Module

@@ -40,7 +40,7 @@ Partial Class FormAccueil
         '
         Me.title_label.AutoSize = True
         Me.title_label.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.title_label.Location = New System.Drawing.Point(322, 9)
+        Me.title_label.Location = New System.Drawing.Point(214, 24)
         Me.title_label.Name = "title_label"
         Me.title_label.Size = New System.Drawing.Size(113, 20)
         Me.title_label.TabIndex = 0
@@ -50,7 +50,7 @@ Partial Class FormAccueil
         '
         Me.player1.AutoSize = True
         Me.player1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.player1.Location = New System.Drawing.Point(133, 128)
+        Me.player1.Location = New System.Drawing.Point(46, 143)
         Me.player1.Name = "player1"
         Me.player1.Size = New System.Drawing.Size(74, 20)
         Me.player1.TabIndex = 1
@@ -60,7 +60,7 @@ Partial Class FormAccueil
         '
         Me.player2.AutoSize = True
         Me.player2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.player2.Location = New System.Drawing.Point(554, 128)
+        Me.player2.Location = New System.Drawing.Point(446, 143)
         Me.player2.Name = "player2"
         Me.player2.Size = New System.Drawing.Size(74, 20)
         Me.player2.TabIndex = 2
@@ -70,7 +70,7 @@ Partial Class FormAccueil
         '
         Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(114, 195)
+        Me.ComboBox1.Location = New System.Drawing.Point(19, 210)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(121, 24)
         Me.ComboBox1.TabIndex = 3
@@ -79,7 +79,7 @@ Partial Class FormAccueil
         '
         Me.ComboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(528, 195)
+        Me.ComboBox2.Location = New System.Drawing.Point(420, 210)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(121, 24)
         Me.ComboBox2.TabIndex = 4
@@ -87,7 +87,7 @@ Partial Class FormAccueil
         'indication
         '
         Me.indication.AutoSize = True
-        Me.indication.Location = New System.Drawing.Point(124, 172)
+        Me.indication.Location = New System.Drawing.Point(26, 187)
         Me.indication.Name = "indication"
         Me.indication.Size = New System.Drawing.Size(94, 16)
         Me.indication.TabIndex = 5
@@ -96,7 +96,7 @@ Partial Class FormAccueil
         'indication_2
         '
         Me.indication_2.AutoSize = True
-        Me.indication_2.Location = New System.Drawing.Point(529, 172)
+        Me.indication_2.Location = New System.Drawing.Point(421, 187)
         Me.indication_2.Name = "indication_2"
         Me.indication_2.Size = New System.Drawing.Size(120, 16)
         Me.indication_2.TabIndex = 6
@@ -106,7 +106,7 @@ Partial Class FormAccueil
         '
         Me.error_label.AutoSize = True
         Me.error_label.ForeColor = System.Drawing.Color.Red
-        Me.error_label.Location = New System.Drawing.Point(181, 248)
+        Me.error_label.Location = New System.Drawing.Point(73, 282)
         Me.error_label.Name = "error_label"
         Me.error_label.Size = New System.Drawing.Size(419, 16)
         Me.error_label.TabIndex = 7
@@ -114,7 +114,7 @@ Partial Class FormAccueil
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(338, 290)
+        Me.Button1.Location = New System.Drawing.Point(230, 410)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(97, 30)
         Me.Button1.TabIndex = 8
@@ -123,7 +123,7 @@ Partial Class FormAccueil
         '
         'buttons_stats
         '
-        Me.buttons_stats.Location = New System.Drawing.Point(501, 290)
+        Me.buttons_stats.Location = New System.Drawing.Point(368, 334)
         Me.buttons_stats.Name = "buttons_stats"
         Me.buttons_stats.Size = New System.Drawing.Size(163, 30)
         Me.buttons_stats.TabIndex = 9
@@ -132,7 +132,7 @@ Partial Class FormAccueil
         '
         'button_settings
         '
-        Me.button_settings.Location = New System.Drawing.Point(164, 290)
+        Me.button_settings.Location = New System.Drawing.Point(65, 334)
         Me.button_settings.Name = "button_settings"
         Me.button_settings.Size = New System.Drawing.Size(97, 30)
         Me.button_settings.TabIndex = 10
@@ -141,7 +141,7 @@ Partial Class FormAccueil
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(326, 390)
+        Me.Button4.Location = New System.Drawing.Point(213, 499)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(127, 48)
         Me.Button4.TabIndex = 11
@@ -152,7 +152,7 @@ Partial Class FormAccueil
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(560, 619)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.button_settings)
         Me.Controls.Add(Me.buttons_stats)
