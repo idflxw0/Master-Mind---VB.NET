@@ -32,13 +32,15 @@
         FormAccueil.playerStats()
     End Sub
 
-    Private Sub ListBox_Name_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox_Name.SelectedIndexChanged, ListBox_Score.SelectedIndexChanged, ListBox_Pattern.SelectedIndexChanged, ListBox_deviner.SelectedIndexChanged, ListBox_time.SelectedIndexChanged
+    Private Sub ListBox_Name_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox_Name.SelectedIndexChanged, ListBox_Score.SelectedIndexChanged, ListBox_Pattern.SelectedIndexChanged, ListBox_deviner.SelectedIndexChanged, ListBox_time.SelectedIndexChanged, ListBox_CumuleTemps.SelectedIndexChanged
         Dim index As Integer = sender.SelectedIndex
         ListBox_Name.SelectedIndex = index
         ListBox_Score.SelectedIndex = index
         ListBox_Pattern.SelectedIndex = index
         ListBox_deviner.SelectedIndex = index
         ListBox_time.SelectedIndex = index
+        ListBox_CumuleTemps.SelectedIndex = index
+
     End Sub
 
     Private Sub buttonSortScore(sender As Object, e As EventArgs) Handles Button_score.Click

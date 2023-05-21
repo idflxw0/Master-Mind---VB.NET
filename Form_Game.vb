@@ -330,8 +330,12 @@ Public Class Form_Game
                 If added_letters = hidden_code Then
                     Timer1.Stop()
                     addPlayer(FormAccueil.ComboBox1.Text, 0, 1, 0, 0, 0)
-                    addPlayer(FormAccueil.ComboBox2.Text, 1, 0, 1, getTimeAsIntger(timer_label), getTimeAsIntger(timer_label))
-                    players.setTheNewBestTime(FormAccueil.ComboBox2.Text, getTimeAsIntger(timer_label))
+                    If hasTimer Then
+                        addPlayer(FormAccueil.ComboBox2.Text, 1, 0, 1, getTimeAsIntger(timer_label), getTimeAsIntger(timer_label))
+                        players.setTheNewBestTime(FormAccueil.ComboBox2.Text, getTimeAsIntger(timer_label))
+                    Else
+                        addPlayer(FormAccueil.ComboBox2.Text, 1, 0, 1, 0, 0)
+                    End If
                     label_found.Visible = True
                     Guess_Button.Enabled = False
                     players.setPreviousCode(hidden_code)
