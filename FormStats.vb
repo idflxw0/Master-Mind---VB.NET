@@ -30,6 +30,7 @@
         ClearAll()
         players.sortByOrderAlpha()
         FormAccueil.playerStats()
+
     End Sub
 
     Private Sub ListBox_Name_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox_Name.SelectedIndexChanged, ListBox_Score.SelectedIndexChanged, ListBox_Pattern.SelectedIndexChanged, ListBox_deviner.SelectedIndexChanged, ListBox_time.SelectedIndexChanged, ListBox_CumuleTemps.SelectedIndexChanged
