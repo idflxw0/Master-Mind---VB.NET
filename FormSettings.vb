@@ -112,10 +112,16 @@ Public Class FormSettings
         changeTimeLimit()
 
         If change_limit_yes.Checked = True Then
-            Form_Game.setChances(Integer.Parse(TextBox_chance.Text))
+            If Integer.Parse(TextBox_chance.Text) <= 0 Then
+                MsgBox("le nombre de coups ne peut pas etre <= 0!", MsgBoxStyle.Critical, "Erreur")
+                Exit Sub
+            Else
+                Form_Game.setChances(Integer.Parse(TextBox_chance.Text))
+            End If
+
         End If
 
-        If filePath_yes.Checked = True Then
+            If filePath_yes.Checked = True Then
             If FilePathTextBox.Text = String.Empty Then
                 MsgBox("le nouveau chemin de fichier ne peut pas être vide!", MsgBoxStyle.Critical, "Erreur")
                 FilePathTextBox.Focus()
