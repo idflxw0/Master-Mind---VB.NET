@@ -86,6 +86,7 @@ Public Class Form_Game
         If seconds = 60 Then
             minutes += 1
             seconds = 0
+            timer_label.Text = Format(minutes, "00:") & Format(seconds, "00")
         End If
         Return Nothing
     End Function

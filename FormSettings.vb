@@ -112,16 +112,10 @@ Public Class FormSettings
         changeTimeLimit()
 
         If change_limit_yes.Checked = True Then
-            If Integer.Parse(TextBox_chance.Text) <= 0 Then
-                MsgBox("le nombre de coups ne peut pas etre <= 0!", MsgBoxStyle.Critical, "Erreur")
-                Exit Sub
-            Else
-                Form_Game.setChances(Integer.Parse(TextBox_chance.Text))
-            End If
-
+            Form_Game.setChances(Num_Chances.Text)
         End If
 
-            If filePath_yes.Checked = True Then
+        If filePath_yes.Checked = True Then
             If FilePathTextBox.Text = String.Empty Then
                 MsgBox("le nouveau chemin de fichier ne peut pas être vide!", MsgBoxStyle.Critical, "Erreur")
                 FilePathTextBox.Focus()
@@ -152,8 +146,8 @@ Public Class FormSettings
 
     Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton4.CheckedChanged, RadioButton3.CheckedChanged
         If RadioButton4.Checked = True Then
-            Text_TimeLimite.Enabled = True
-            TextBox_Sec.Enabled = True
+            TimerMin.Enabled = True
+            TimerSec.Enabled = True
             TimeLimit_Button_no.Enabled = False
             Time_limitButton_yes.Enabled = False
         End If
@@ -165,8 +159,8 @@ Public Class FormSettings
     End Sub
 
     Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton3.CheckedChanged
-        Text_TimeLimite.Enabled = False
-        TextBox_Sec.Enabled = False
+        TimerMin.Enabled = False
+        TimerSec.Enabled = False
     End Sub
 
     Private Sub activateTimer()
@@ -181,20 +175,20 @@ Public Class FormSettings
     Private Sub changeTimeLimit()
         If RadioButton4.Checked = True Then
             Form_Game.havingTimer(True)
-            If TextBox_Sec.Text = "0" Then
-                TextBox_Sec.Text = "00"
+            If TimerSec.Text = "0" Then
+                TimerSec.Text = "00"
             End If
-            Form_Game.setTimeLimit(Text_TimeLimite.Text, TextBox_Sec.Text)
+            Form_Game.setTimeLimit(TimerMin.Text, TimerSec.Text)
         End If
     End Sub
 
-    Private Sub Text_TimeLimite_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Text_TimeLimite.KeyPress
+    Private Sub Text_TimeLimite_KeyPress(sender As Object, e As KeyPressEventArgs)
         If Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> ChrW(Keys.Back) Then
             e.Handled = True
         End If
     End Sub
 
-    Private Sub TextBox_Sec_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox_Sec.KeyPress
+    Private Sub TextBox_Sec_KeyPress(sender As Object, e As KeyPressEventArgs)
         If Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> ChrW(Keys.Back) Then
             e.Handled = True
         End If
@@ -211,14 +205,14 @@ Public Class FormSettings
 
     Private Sub change_limit_yes_CheckedChanged(sender As Object, e As EventArgs) Handles change_limit_yes.CheckedChanged, change_limit_no.CheckedChanged
         If change_limit_no.Checked = True Then
-            TextBox_chance.Enabled = False
+            Num_Chances.Enabled = False
         End If
         If change_limit_yes.Checked = True Then
-            TextBox_chance.Enabled = True
+            Num_Chances.Enabled = True
         End If
     End Sub
 
-    Private Sub TextBox_chance_TextChanged(sender As Object, e As KeyPressEventArgs) Handles TextBox_chance.KeyPress
+    Private Sub TextBox_chance_TextChanged(sender As Object, e As KeyPressEventArgs)
         If Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> ChrW(Keys.Back) Then
             e.Handled = True
         End If

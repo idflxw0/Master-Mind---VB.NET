@@ -49,8 +49,6 @@ Partial Class FormSettings
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox_Sec = New System.Windows.Forms.TextBox()
-        Me.Text_TimeLimite = New System.Windows.Forms.TextBox()
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -58,7 +56,6 @@ Partial Class FormSettings
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Time_limitButton_yes = New System.Windows.Forms.RadioButton()
         Me.chance_panel = New System.Windows.Forms.Panel()
-        Me.TextBox_chance = New System.Windows.Forms.TextBox()
         Me.change_limit_no = New System.Windows.Forms.RadioButton()
         Me.change_limit_yes = New System.Windows.Forms.RadioButton()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -71,6 +68,9 @@ Partial Class FormSettings
         Me.filePath_yes = New System.Windows.Forms.RadioButton()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Num_Chances = New System.Windows.Forms.NumericUpDown()
+        Me.TimerMin = New System.Windows.Forms.NumericUpDown()
+        Me.TimerSec = New System.Windows.Forms.NumericUpDown()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.color_panel.SuspendLayout()
@@ -78,6 +78,9 @@ Partial Class FormSettings
         Me.Panel4.SuspendLayout()
         Me.chance_panel.SuspendLayout()
         Me.Panel5.SuspendLayout()
+        CType(Me.Num_Chances, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TimerMin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TimerSec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -309,11 +312,11 @@ Partial Class FormSettings
         'Panel4
         '
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.TimerSec)
+        Me.Panel4.Controls.Add(Me.TimerMin)
         Me.Panel4.Controls.Add(Me.Label8)
         Me.Panel4.Controls.Add(Me.Label7)
         Me.Panel4.Controls.Add(Me.Label6)
-        Me.Panel4.Controls.Add(Me.TextBox_Sec)
-        Me.Panel4.Controls.Add(Me.Text_TimeLimite)
         Me.Panel4.Controls.Add(Me.RadioButton3)
         Me.Panel4.Controls.Add(Me.RadioButton4)
         Me.Panel4.Controls.Add(Me.Label5)
@@ -349,22 +352,6 @@ Partial Class FormSettings
         Me.Label6.Size = New System.Drawing.Size(14, 20)
         Me.Label6.TabIndex = 15
         Me.Label6.Text = ":"
-        '
-        'TextBox_Sec
-        '
-        Me.TextBox_Sec.Location = New System.Drawing.Point(148, 91)
-        Me.TextBox_Sec.MaxLength = 2
-        Me.TextBox_Sec.Name = "TextBox_Sec"
-        Me.TextBox_Sec.Size = New System.Drawing.Size(49, 22)
-        Me.TextBox_Sec.TabIndex = 14
-        '
-        'Text_TimeLimite
-        '
-        Me.Text_TimeLimite.Location = New System.Drawing.Point(57, 91)
-        Me.Text_TimeLimite.MaxLength = 2
-        Me.Text_TimeLimite.Name = "Text_TimeLimite"
-        Me.Text_TimeLimite.Size = New System.Drawing.Size(49, 22)
-        Me.Text_TimeLimite.TabIndex = 13
         '
         'RadioButton3
         '
@@ -431,7 +418,7 @@ Partial Class FormSettings
         'chance_panel
         '
         Me.chance_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.chance_panel.Controls.Add(Me.TextBox_chance)
+        Me.chance_panel.Controls.Add(Me.Num_Chances)
         Me.chance_panel.Controls.Add(Me.change_limit_no)
         Me.chance_panel.Controls.Add(Me.change_limit_yes)
         Me.chance_panel.Controls.Add(Me.Label9)
@@ -439,14 +426,6 @@ Partial Class FormSettings
         Me.chance_panel.Name = "chance_panel"
         Me.chance_panel.Size = New System.Drawing.Size(345, 203)
         Me.chance_panel.TabIndex = 5
-        '
-        'TextBox_chance
-        '
-        Me.TextBox_chance.Location = New System.Drawing.Point(111, 104)
-        Me.TextBox_chance.MaxLength = 2
-        Me.TextBox_chance.Name = "TextBox_chance"
-        Me.TextBox_chance.Size = New System.Drawing.Size(135, 22)
-        Me.TextBox_chance.TabIndex = 18
         '
         'change_limit_no
         '
@@ -551,6 +530,28 @@ Partial Class FormSettings
         Me.filePath_yes.Text = "Oui"
         Me.filePath_yes.UseVisualStyleBackColor = True
         '
+        'Num_Chances
+        '
+        Me.Num_Chances.Location = New System.Drawing.Point(124, 103)
+        Me.Num_Chances.Name = "Num_Chances"
+        Me.Num_Chances.Size = New System.Drawing.Size(56, 22)
+        Me.Num_Chances.TabIndex = 19
+        Me.Num_Chances.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'TimerMin
+        '
+        Me.TimerMin.Location = New System.Drawing.Point(56, 89)
+        Me.TimerMin.Name = "TimerMin"
+        Me.TimerMin.Size = New System.Drawing.Size(48, 22)
+        Me.TimerMin.TabIndex = 18
+        '
+        'TimerSec
+        '
+        Me.TimerSec.Location = New System.Drawing.Point(147, 89)
+        Me.TimerSec.Name = "TimerSec"
+        Me.TimerSec.Size = New System.Drawing.Size(48, 22)
+        Me.TimerSec.TabIndex = 19
+        '
         'FormSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -579,6 +580,9 @@ Partial Class FormSettings
         Me.chance_panel.PerformLayout()
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
+        CType(Me.Num_Chances, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TimerMin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TimerSec, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -607,7 +611,6 @@ Partial Class FormSettings
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents Text_TimeLimite As TextBox
     Friend WithEvents RadioButton3 As RadioButton
     Friend WithEvents RadioButton4 As RadioButton
     Friend WithEvents Label5 As Label
@@ -618,8 +621,6 @@ Partial Class FormSettings
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox_Sec As TextBox
-    Friend WithEvents TextBox_chance As TextBox
     Friend WithEvents change_limit_no As RadioButton
     Friend WithEvents change_limit_yes As RadioButton
     Friend WithEvents Label9 As Label
@@ -632,4 +633,7 @@ Partial Class FormSettings
     Friend WithEvents filePath_yes As RadioButton
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents Num_Chances As NumericUpDown
+    Friend WithEvents TimerSec As NumericUpDown
+    Friend WithEvents TimerMin As NumericUpDown
 End Class
